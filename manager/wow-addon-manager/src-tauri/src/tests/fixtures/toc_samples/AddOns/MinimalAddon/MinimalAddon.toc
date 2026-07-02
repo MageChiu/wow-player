@@ -1,0 +1,3 @@
+## Title: Minimal Addon
+
+Minimal.lua

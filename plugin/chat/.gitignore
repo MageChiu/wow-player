@@ -1,0 +1,6 @@
+# 打包产物统一输出到 plugin/dist（见 plugin/.gitignore）
+
+# 系统 / 编辑器垃圾文件
+.DS_Store
+*.swp
+*.bak

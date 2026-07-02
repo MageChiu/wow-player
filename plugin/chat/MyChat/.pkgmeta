@@ -1,0 +1,9 @@
+package-as: MyChat
+
+# 本插件无外部库依赖，无需 externals。
+# 不自动生成/拆分 TOC（我们手动维护 MyChat.toc）。
+enable-toc-creation: no
+
+# 打包时排除的文件（相对本插件目录）。
+ignore:
+  - .pkgmeta
