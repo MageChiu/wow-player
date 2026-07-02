@@ -1,0 +1,2954 @@
+manager/wow-addon-manager/src-tauri/src/providers/mod.rs
+  s_db79d63910dc9a::t_9cdd3acfdb958c 1 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646dd092199e1bef8e318","tool_type":"agent","tool_id":"Write","line_ranges":[{"Single":1}]}]}
+manager/docs/开发规范.md
+  s_db79d63910dc9a::t_6cda4a1b3eee22 1-242 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46350e092199e1bef8e211","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,242]}]}]}
+plugin/chat/MyChat/Init.lua
+  s_ca044d1532b8b0::t_8a8455af6e66fd 1-49 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46463b092199e1bef8e2a9","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,49]}]}]}
+manager/wow-addon-manager/src/styles.css
+  s_db79d63910dc9a::t_55624475ff0c80 1-79 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645f4092199e1bef8e285","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,79]}]}]}
+plugin/chat/MyChat/MyChat.toc
+  s_ca044d1532b8b0::t_03f209a287a1c6 1-13,16,26 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46464f092199e1bef8e2b2","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,13]},{"Single":16},{"Single":26}]}]}
+  s_ca044d1532b8b0::t_3616cb7160ef8b 14-15,17-25 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464c2f092199e1bef8e404","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[14,15]},{"Range":[17,25]}]}]}
+manager/wow-addon-manager/src-tauri/src/commands/system_commands.rs
+  s_db79d63910dc9a::t_990edaf0e41b35 1-30 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646ca092199e1bef8e300","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,30]}]}]}
+plugin/chat/wow_chat_plugin_dev_tasks.md
+  s_ca044d1532b8b0::t_a6252967843624 401-416 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464c95092199e1bef8e416","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[401,416]}]}]}
+plugin/chat/MyChat/MessageBus.lua
+  s_ca044d1532b8b0::t_04e0253790c5de 1-59 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464686092199e1bef8e2d6","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,59]}]}]}
+manager/wow-addon-manager/src/app/App.tsx
+  s_db79d63910dc9a::t_7209700b2fb8e0 1-83 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464602092199e1bef8e28e","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,83]}]}]}
+manager/docs/README.md
+  s_db79d63910dc9a::t_327862b3726105 1-42 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a463574092199e1bef8e220","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,42]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/errors.rs
+  s_db79d63910dc9a::t_139dde509d8f24 1-73 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464680092199e1bef8e2d0","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,73]}]}]}
+  s_db79d63910dc9a::t_22b0e2ada5fa94 74-97 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464733092199e1bef8e321","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[74,97]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/snapshot.rs
+  s_db79d63910dc9a::t_daedad0d479af5 1-33 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464672092199e1bef8e2c7","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,33]}]}]}
+manager/wow-addon-manager/.gitignore
+  s_db79d63910dc9a::t_c45a5b4e09e022 1-20 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464618092199e1bef8e294","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,20]}]}]}
+manager/wow-addon-manager/vite.config.ts
+  s_db79d63910dc9a::t_4e7ff4f81b72a4 1-30 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46459e092199e1bef8e261","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,30]}]}]}
+plugin/chat/MyChat/Utils.lua
+  s_ca044d1532b8b0::t_52df8eb5d1072d 1-76 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464612092199e1bef8e291","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,76]}]}]}
+manager/wow-addon-manager/src-tauri/build.rs
+  s_db79d63910dc9a::t_993b12d39cf7cb 1-3 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464633092199e1bef8e2a6","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,3]}]}]}
+plugin/chat/MyChat/WhisperIndex.lua
+  s_ca044d1532b8b0::t_525632a02dd076 1-68 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464b36092199e1bef8e3c5","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,68]}]}]}
+plugin/chat/MyChat/UI/SettingsPanel.lua
+  s_ca044d1532b8b0::t_f13da08e87b728 1-86 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464bdf092199e1bef8e3f5","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,86]}]}]}
+manager/wow-addon-manager/src/types/errors.ts
+  s_db79d63910dc9a::t_6eb698e822b243 1-80 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645bb092199e1bef8e26a","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,80]}]}]}
+manager/wow-addon-manager/src-tauri/capabilities/default.json
+  s_db79d63910dc9a::t_3989f8df2dbc2a 1-10 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464649092199e1bef8e2af","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,10]}]}]}
+manager/wow-addon-manager/src-tauri/src/infra/mod.rs
+  s_db79d63910dc9a::t_8f8b74c095d8a8 1-4 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646b3092199e1bef8e2ee","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,4]}]}]}
+plugin/chat/MyChat/Config.lua
+  s_ca044d1532b8b0::t_47675e587aa5d3 25-26,28-29,31 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646b4092199e1bef8e2f1","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[25,26]},{"Range":[28,29]},{"Single":31}]}]}
+  s_ca044d1532b8b0::t_46e088e8cc372b 1-24,27,30,32-67 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46466e092199e1bef8e2c4","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,24]},{"Single":27},{"Single":30},{"Range":[32,67]}]}]}
+plugin/chat/MyChat/Core.lua
+  s_ca044d1532b8b0::t_8de313aff9fcd7 1-43,45-49,51-79 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464623092199e1bef8e297","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,43]},{"Range":[45,49]},{"Range":[51,79]}]}]}
+  s_ca044d1532b8b0::t_131d23922548c9 44 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464bb7092199e1bef8e3e9","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Single":44}]}]}
+  s_ca044d1532b8b0::t_34854d1bb329e8 50 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464b82092199e1bef8e3dd","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Single":50}]}]}
+manager/wow-addon-manager/src-tauri/src/lib.rs
+  s_db79d63910dc9a::t_88282028e17c11 1-29,33-35 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646e5092199e1bef8e31b","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,29]},{"Range":[33,35]}]}]}
+  s_db79d63910dc9a::t_06e45d8cfa7b22 30-32 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464782092199e1bef8e327","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[30,32]}]}]}
+manager/wow-addon-manager/tsconfig.json
+  s_db79d63910dc9a::t_09ae6a8742090d 1-25 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464598092199e1bef8e25b","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,25]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/addon.rs
+  s_db79d63910dc9a::t_7cc59d00d4ff3b 1-113 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464658092199e1bef8e2b5","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,113]}]}]}
+plugin/chat/MyChat/CombatGuard.lua
+  s_ca044d1532b8b0::t_d87940894e24ca 1-52 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464aaf092199e1bef8e39d","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,52]}]}]}
+manager/wow-addon-manager/src-tauri/tauri.conf.json
+  s_db79d63910dc9a::t_6c790a542bf803 1-35 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464642092199e1bef8e2ac","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,35]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/profile.rs
+  s_db79d63910dc9a::t_1d56f1ed9950f2 1-22 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464675092199e1bef8e2ca","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,22]}]}]}
+manager/wow-addon-manager/src/main.tsx
+  s_db79d63910dc9a::t_505e13f0132d25 1-10 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645f3092199e1bef8e282","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,10]}]}]}
+manager/wow-addon-manager/src-tauri/src/commands/mod.rs
+  s_db79d63910dc9a::t_1802ede6294c30 1-3 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646cf092199e1bef8e306","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,3]}]}]}
+plugin/chat/MyChat/Constants.lua
+  s_db79d63910dc9a::t_d32de4b75ba753 1-36 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464602092199e1bef8e28e","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,36]}]}]}
+manager/wow-addon-manager/src-tauri/src/installer/mod.rs
+  s_db79d63910dc9a::t_c25a3b31bc4b18 1 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646dc092199e1bef8e315","tool_type":"agent","tool_id":"Write","line_ranges":[{"Single":1}]}]}
+manager/wow-addon-manager/src-tauri/src/main.rs
+  s_db79d63910dc9a::t_f0978efb1c1501 1-6 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646ea092199e1bef8e31e","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,6]}]}]}
+manager/wow-addon-manager/src/types/command.ts
+  s_db79d63910dc9a::t_726479e0bb092b 1-141 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645ca092199e1bef8e26d","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,141]}]}]}
+manager/wow-addon-manager/src-tauri/src/infra/db/mod.rs
+  s_db79d63910dc9a::t_d523fd829fb436 1-3 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646b1092199e1bef8e2eb","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,3]}]}]}
+manager/wow-addon-manager/index.html
+  s_db79d63910dc9a::t_1abae03fcffae7 1-12 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645a0092199e1bef8e264","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,12]}]}]}
+manager/wow-addon-manager/README.md
+  s_db79d63910dc9a::t_bf44081f678cb5 1-73 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464aa1092199e1bef8e394","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,73]}]}]}
+plugin/chat/MyChat/Filters.lua
+  s_ca044d1532b8b0::t_71ff550040abec 1-108 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464ac3092199e1bef8e3a9","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,108]}]}]}
+manager/wow-addon-manager/src/types/domain.ts
+  s_db79d63910dc9a::t_b1c5372f3656de 1-189 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645ac092199e1bef8e267","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,189]}]}]}
+plugin/chat/MyChat/Events.lua
+  s_ca044d1532b8b0::t_c817e676489dfa 1-56 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464695092199e1bef8e2df","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,56]}]}]}
+manager/wow-addon-manager/src-tauri/src/infra/logging.rs
+  s_db79d63910dc9a::t_b4d11c8f9e7f10 1-10 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46469d092199e1bef8e2e5","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,10]}]}]}
+manager/wow-addon-manager/src-tauri/src/app/state.rs
+  s_db79d63910dc9a::t_0765e1ac32fb55 1-15 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646bb092199e1bef8e2f4","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,15]}]}]}
+manager/wow-addon-manager/src-tauri/src/app/mod.rs
+  s_db79d63910dc9a::t_9911632ebd6be3 1-5 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646c2092199e1bef8e2fd","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,5]}]}]}
+plugin/chat/MyChat/NativeEnhancer.lua
+  s_ca044d1532b8b0::t_55a400cf5e7053 1-102 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464b15092199e1bef8e3b5","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,102]}]}]}
+plugin/chat/MyChat/Router.lua
+  s_ca044d1532b8b0::t_82c8156433b603 1-38 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464b4e092199e1bef8e3ce","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,38]}]}]}
+plugin/chat/MyChat/Diagnostics.lua
+  s_ca044d1532b8b0::t_1fb22867df00de 1-92 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464b93092199e1bef8e3e6","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,92]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/install.rs
+  s_db79d63910dc9a::t_1e3ca7e6f066f0 1-57 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46466b092199e1bef8e2c1","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,57]}]}]}
+manager/wow-addon-manager/.npmrc
+  s_db79d63910dc9a::t_2f0ad1c9c3814f 1 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4647a5092199e1bef8e330","tool_type":"agent","tool_id":"Write","line_ranges":[{"Single":1}]}]}
+plugin/chat/MyChat/Commands.lua
+  s_ca044d1532b8b0::t_40f4c5bfe0cf59 1-63 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464bc4092199e1bef8e3ec","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,63]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/toc.rs
+  s_db79d63910dc9a::t_266ab507cca317 1-15 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464689092199e1bef8e2d9","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,15]}]}]}
+plugin/chat/MyChat/UI/MirrorPanel.lua
+  s_ca044d1532b8b0::t_849f6ff70f8887 74-75 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464c4f092199e1bef8e40d","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[74,75]}]}]}
+  s_ca044d1532b8b0::t_959baa6ad54267 1-73,76-105 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464c00092199e1bef8e3fe","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,73]},{"Range":[76,105]}]}]}
+plugin/chat/MyChat/Parser.lua
+  s_ca044d1532b8b0::t_4c7735b7cfd579 1-106 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464a8a092199e1bef8e388","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,106]}]}]}
+manager/wow-addon-manager/src-tauri/src/app/bootstrap.rs
+  s_db79d63910dc9a::t_a35f22809b7aea 1-27 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646be092199e1bef8e2f7","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,27]}]}]}
+manager/wow-addon-manager/src-tauri/src/scanner/mod.rs
+  s_db79d63910dc9a::t_9388b37834e4e4 1 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646db092199e1bef8e312","tool_type":"agent","tool_id":"Write","line_ranges":[{"Single":1}]}]}
+manager/wow-addon-manager/src/services/tauriClient.ts
+  s_db79d63910dc9a::t_df3e76f3eec660 1-32 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645de092199e1bef8e279","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,32]}]}]}
+manager/wow-addon-manager/src-tauri/src/services/mod.rs
+  s_db79d63910dc9a::t_a2f74269620b3a 1 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646d7092199e1bef8e30c","tool_type":"agent","tool_id":"Write","line_ranges":[{"Single":1}]}]}
+manager/wow-addon-manager/src/vite-env.d.ts
+  s_db79d63910dc9a::t_8d8788fa95dffb 1-9 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645f1092199e1bef8e27f","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,9]}]}]}
+manager/wow-addon-manager/package.json
+  s_db79d63910dc9a::t_5501a55a6abcba 28-30 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4647b0092199e1bef8e333","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[28,30]}]}]}
+  s_db79d63910dc9a::t_0e2b6b8eb4779a 1-27,31-32 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464593092199e1bef8e258","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,27]},{"Range":[31,32]}]}]}
+manager/wow-addon-manager/tsconfig.node.json
+  s_db79d63910dc9a::t_ffcca0364e5486 1-11 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46459c092199e1bef8e25e","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,11]}]}]}
+plugin/chat/MyChat/Channels.lua
+  s_ca044d1532b8b0::t_a48f683294cd79 1-79 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464b68092199e1bef8e3d7","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,79]}]}]}
+manager/wow-addon-manager/src-tauri/src/infra/db/connection.rs
+  s_db79d63910dc9a::t_5ea99004f4fa9f 1-63 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646a1092199e1bef8e2e8","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,63]}]}]}
+manager/wow-addon-manager/src-tauri/src/domain/mod.rs
+  s_db79d63910dc9a::t_89942acefe8d97 1-18 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46468c092199e1bef8e2dc","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,18]}]}]}
+manager/wow-addon-manager/src-tauri/src/platform/mod.rs
+  s_db79d63910dc9a::t_e74524825e5e5e 1 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4646da092199e1bef8e30f","tool_type":"agent","tool_id":"Write","line_ranges":[{"Single":1}]}]}
+manager/wow-addon-manager/src-tauri/Cargo.toml
+  s_db79d63910dc9a::t_ea3d30595b5681 1-29 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a46462f092199e1bef8e2a3","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,29]}]}]}
+plugin/chat/MyChat/Data/Defaults.lua
+  s_ca044d1532b8b0::t_46a955d6edb000 1-25 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a464660092199e1bef8e2be","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,25]}]}]}
+manager/wow-addon-manager/src/services/systemApi.ts
+  s_db79d63910dc9a::t_749ff2cd4f9df4 1-16 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4645e5092199e1bef8e27c","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,16]}]}]}
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "281da01e7593d40cf5370934027714b97890ac9b",
+  "prompts": {},
+  "sessions": {
+    "s_ca044d1532b8b0": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4633dd092199e1bef8e1bf",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": "zhaopeng.charles <zhaopeng.charles@bytedance.com>"
+    },
+    "s_db79d63910dc9a": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a463249092199e1bef8e1b6",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": "zhaopeng.charles <zhaopeng.charles@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {
+    "manager/docs/README.md": [
+      {
+        "hash": "s_db79d63910dc9a::t_327862b3726105",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              42
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a463574092199e1bef8e220",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  42
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/docs/开发规范.md": [
+      {
+        "hash": "s_db79d63910dc9a::t_6cda4a1b3eee22",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              242
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46350e092199e1bef8e211",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  242
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/.gitignore": [
+      {
+        "hash": "s_db79d63910dc9a::t_c45a5b4e09e022",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              20
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464618092199e1bef8e294",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  20
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/.npmrc": [
+      {
+        "hash": "s_db79d63910dc9a::t_2f0ad1c9c3814f",
+        "line_ranges": [
+          {
+            "Single": 1
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4647a5092199e1bef8e330",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Single": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/README.md": [
+      {
+        "hash": "s_db79d63910dc9a::t_bf44081f678cb5",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              73
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464aa1092199e1bef8e394",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  73
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/index.html": [
+      {
+        "hash": "s_db79d63910dc9a::t_1abae03fcffae7",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              12
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645a0092199e1bef8e264",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  12
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/package.json": [
+      {
+        "hash": "s_db79d63910dc9a::t_5501a55a6abcba",
+        "line_ranges": [
+          {
+            "Range": [
+              28,
+              30
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4647b0092199e1bef8e333",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  28,
+                  30
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_db79d63910dc9a::t_0e2b6b8eb4779a",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              27
+            ]
+          },
+          {
+            "Range": [
+              31,
+              32
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464593092199e1bef8e258",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  27
+                ]
+              },
+              {
+                "Range": [
+                  31,
+                  32
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/Cargo.toml": [
+      {
+        "hash": "s_db79d63910dc9a::t_ea3d30595b5681",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              29
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46462f092199e1bef8e2a3",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  29
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/build.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_993b12d39cf7cb",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              3
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464633092199e1bef8e2a6",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  3
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/capabilities/default.json": [
+      {
+        "hash": "s_db79d63910dc9a::t_3989f8df2dbc2a",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              10
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464649092199e1bef8e2af",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  10
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/app/bootstrap.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_a35f22809b7aea",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              27
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646be092199e1bef8e2f7",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  27
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/app/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_9911632ebd6be3",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              5
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646c2092199e1bef8e2fd",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  5
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/app/state.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_0765e1ac32fb55",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              15
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646bb092199e1bef8e2f4",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  15
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/commands/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_1802ede6294c30",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              3
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646cf092199e1bef8e306",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  3
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/commands/system_commands.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_990edaf0e41b35",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              30
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646ca092199e1bef8e300",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  30
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/addon.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_7cc59d00d4ff3b",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              113
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464658092199e1bef8e2b5",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  113
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/errors.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_139dde509d8f24",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              73
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464680092199e1bef8e2d0",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  73
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_db79d63910dc9a::t_22b0e2ada5fa94",
+        "line_ranges": [
+          {
+            "Range": [
+              74,
+              97
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464733092199e1bef8e321",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  74,
+                  97
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/install.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_1e3ca7e6f066f0",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              57
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46466b092199e1bef8e2c1",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  57
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_89942acefe8d97",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              18
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46468c092199e1bef8e2dc",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  18
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/profile.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_1d56f1ed9950f2",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              22
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464675092199e1bef8e2ca",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  22
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/snapshot.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_daedad0d479af5",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              33
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464672092199e1bef8e2c7",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  33
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/domain/toc.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_266ab507cca317",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              15
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464689092199e1bef8e2d9",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  15
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/infra/db/connection.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_5ea99004f4fa9f",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              63
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646a1092199e1bef8e2e8",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  63
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/infra/db/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_d523fd829fb436",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              3
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646b1092199e1bef8e2eb",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  3
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/infra/logging.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_b4d11c8f9e7f10",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              10
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46469d092199e1bef8e2e5",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  10
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/infra/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_8f8b74c095d8a8",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              4
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646b3092199e1bef8e2ee",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  4
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/installer/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_c25a3b31bc4b18",
+        "line_ranges": [
+          {
+            "Single": 1
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646dc092199e1bef8e315",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Single": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/lib.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_88282028e17c11",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              29
+            ]
+          },
+          {
+            "Range": [
+              33,
+              35
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646e5092199e1bef8e31b",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  29
+                ]
+              },
+              {
+                "Range": [
+                  33,
+                  35
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_db79d63910dc9a::t_06e45d8cfa7b22",
+        "line_ranges": [
+          {
+            "Range": [
+              30,
+              32
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464782092199e1bef8e327",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  30,
+                  32
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/main.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_f0978efb1c1501",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              6
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646ea092199e1bef8e31e",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  6
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/platform/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_e74524825e5e5e",
+        "line_ranges": [
+          {
+            "Single": 1
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646da092199e1bef8e30f",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Single": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/providers/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_9cdd3acfdb958c",
+        "line_ranges": [
+          {
+            "Single": 1
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646dd092199e1bef8e318",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Single": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/scanner/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_9388b37834e4e4",
+        "line_ranges": [
+          {
+            "Single": 1
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646db092199e1bef8e312",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Single": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/src/services/mod.rs": [
+      {
+        "hash": "s_db79d63910dc9a::t_a2f74269620b3a",
+        "line_ranges": [
+          {
+            "Single": 1
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646d7092199e1bef8e30c",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Single": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src-tauri/tauri.conf.json": [
+      {
+        "hash": "s_db79d63910dc9a::t_6c790a542bf803",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              35
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464642092199e1bef8e2ac",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  35
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/app/App.tsx": [
+      {
+        "hash": "s_db79d63910dc9a::t_7209700b2fb8e0",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              83
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464602092199e1bef8e28e",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  83
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/main.tsx": [
+      {
+        "hash": "s_db79d63910dc9a::t_505e13f0132d25",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              10
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645f3092199e1bef8e282",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  10
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/services/systemApi.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_749ff2cd4f9df4",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              16
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645e5092199e1bef8e27c",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  16
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/services/tauriClient.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_df3e76f3eec660",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              32
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645de092199e1bef8e279",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  32
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/styles.css": [
+      {
+        "hash": "s_db79d63910dc9a::t_55624475ff0c80",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              79
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645f4092199e1bef8e285",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  79
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/types/command.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_726479e0bb092b",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              141
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645ca092199e1bef8e26d",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  141
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/types/domain.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_b1c5372f3656de",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              189
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645ac092199e1bef8e267",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  189
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/types/errors.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_6eb698e822b243",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              80
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645bb092199e1bef8e26a",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  80
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/src/vite-env.d.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_8d8788fa95dffb",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              9
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4645f1092199e1bef8e27f",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  9
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/tsconfig.json": [
+      {
+        "hash": "s_db79d63910dc9a::t_09ae6a8742090d",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              25
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464598092199e1bef8e25b",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  25
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/tsconfig.node.json": [
+      {
+        "hash": "s_db79d63910dc9a::t_ffcca0364e5486",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              11
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46459c092199e1bef8e25e",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  11
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "manager/wow-addon-manager/vite.config.ts": [
+      {
+        "hash": "s_db79d63910dc9a::t_4e7ff4f81b72a4",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              30
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46459e092199e1bef8e261",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  30
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Channels.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_a48f683294cd79",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              79
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464b68092199e1bef8e3d7",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  79
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/CombatGuard.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_d87940894e24ca",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              52
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464aaf092199e1bef8e39d",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  52
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Commands.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_40f4c5bfe0cf59",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              63
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464bc4092199e1bef8e3ec",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  63
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Config.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_47675e587aa5d3",
+        "line_ranges": [
+          {
+            "Range": [
+              25,
+              26
+            ]
+          },
+          {
+            "Range": [
+              28,
+              29
+            ]
+          },
+          {
+            "Single": 31
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4646b4092199e1bef8e2f1",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  25,
+                  26
+                ]
+              },
+              {
+                "Range": [
+                  28,
+                  29
+                ]
+              },
+              {
+                "Single": 31
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_ca044d1532b8b0::t_46e088e8cc372b",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              24
+            ]
+          },
+          {
+            "Single": 27
+          },
+          {
+            "Single": 30
+          },
+          {
+            "Range": [
+              32,
+              67
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46466e092199e1bef8e2c4",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  24
+                ]
+              },
+              {
+                "Single": 27
+              },
+              {
+                "Single": 30
+              },
+              {
+                "Range": [
+                  32,
+                  67
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Constants.lua": [
+      {
+        "hash": "s_db79d63910dc9a::t_d32de4b75ba753",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              36
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464602092199e1bef8e28e",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  36
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Core.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_8de313aff9fcd7",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              43
+            ]
+          },
+          {
+            "Range": [
+              45,
+              49
+            ]
+          },
+          {
+            "Range": [
+              51,
+              79
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464623092199e1bef8e297",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  43
+                ]
+              },
+              {
+                "Range": [
+                  45,
+                  49
+                ]
+              },
+              {
+                "Range": [
+                  51,
+                  79
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_ca044d1532b8b0::t_131d23922548c9",
+        "line_ranges": [
+          {
+            "Single": 44
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464bb7092199e1bef8e3e9",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Single": 44
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_ca044d1532b8b0::t_34854d1bb329e8",
+        "line_ranges": [
+          {
+            "Single": 50
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464b82092199e1bef8e3dd",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Single": 50
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Data/Defaults.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_46a955d6edb000",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              25
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464660092199e1bef8e2be",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  25
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Diagnostics.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_1fb22867df00de",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              92
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464b93092199e1bef8e3e6",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  92
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Events.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_c817e676489dfa",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              56
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464695092199e1bef8e2df",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  56
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Filters.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_71ff550040abec",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              108
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464ac3092199e1bef8e3a9",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  108
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Init.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_8a8455af6e66fd",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              49
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46463b092199e1bef8e2a9",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  49
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/MessageBus.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_04e0253790c5de",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              59
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464686092199e1bef8e2d6",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  59
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/MyChat.toc": [
+      {
+        "hash": "s_ca044d1532b8b0::t_03f209a287a1c6",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              13
+            ]
+          },
+          {
+            "Single": 16
+          },
+          {
+            "Single": 26
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a46464f092199e1bef8e2b2",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  13
+                ]
+              },
+              {
+                "Single": 16
+              },
+              {
+                "Single": 26
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_ca044d1532b8b0::t_3616cb7160ef8b",
+        "line_ranges": [
+          {
+            "Range": [
+              14,
+              15
+            ]
+          },
+          {
+            "Range": [
+              17,
+              25
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464c2f092199e1bef8e404",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  14,
+                  15
+                ]
+              },
+              {
+                "Range": [
+                  17,
+                  25
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/NativeEnhancer.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_55a400cf5e7053",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              102
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464b15092199e1bef8e3b5",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  102
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Parser.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_4c7735b7cfd579",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              106
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464a8a092199e1bef8e388",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  106
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Router.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_82c8156433b603",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              38
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464b4e092199e1bef8e3ce",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  38
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/UI/MirrorPanel.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_849f6ff70f8887",
+        "line_ranges": [
+          {
+            "Range": [
+              74,
+              75
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464c4f092199e1bef8e40d",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  74,
+                  75
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_ca044d1532b8b0::t_959baa6ad54267",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              73
+            ]
+          },
+          {
+            "Range": [
+              76,
+              105
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464c00092199e1bef8e3fe",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  73
+                ]
+              },
+              {
+                "Range": [
+                  76,
+                  105
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/UI/SettingsPanel.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_f13da08e87b728",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              86
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464bdf092199e1bef8e3f5",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  86
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Utils.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_52df8eb5d1072d",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              76
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464612092199e1bef8e291",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  76
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/WhisperIndex.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_525632a02dd076",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              68
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464b36092199e1bef8e3c5",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  68
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/wow_chat_plugin_dev_tasks.md": [
+      {
+        "hash": "s_ca044d1532b8b0::t_a6252967843624",
+        "line_ranges": [
+          {
+            "Range": [
+              401,
+              416
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a464c95092199e1bef8e416",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  401,
+                  416
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "remote_transcripts": {
+    "s_ca044d1532b8b0": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_03f209a287a1c6": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_04e0253790c5de": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_131d23922548c9": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_1fb22867df00de": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_34854d1bb329e8": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_3616cb7160ef8b": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_40f4c5bfe0cf59": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_46a955d6edb000": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_46e088e8cc372b": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_47675e587aa5d3": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_4c7735b7cfd579": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_525632a02dd076": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_52df8eb5d1072d": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_55a400cf5e7053": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_71ff550040abec": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_82c8156433b603": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_849f6ff70f8887": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_8a8455af6e66fd": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_8de313aff9fcd7": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_959baa6ad54267": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_a48f683294cd79": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_a6252967843624": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_c71a0d8d131898": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_c817e676489dfa": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_d87940894e24ca": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_f13da08e87b728": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_06e45d8cfa7b22": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_0765e1ac32fb55": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_09ae6a8742090d": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_0e2b6b8eb4779a": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_139dde509d8f24": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_1802ede6294c30": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_1abae03fcffae7": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_1d56f1ed9950f2": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_1e3ca7e6f066f0": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_22b0e2ada5fa94": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_266ab507cca317": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_2f0ad1c9c3814f": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_327862b3726105": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_3989f8df2dbc2a": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_4e7ff4f81b72a4": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_505e13f0132d25": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_5501a55a6abcba": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_55624475ff0c80": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_5ea99004f4fa9f": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_6c790a542bf803": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_6cda4a1b3eee22": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_6eb698e822b243": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_7209700b2fb8e0": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_726479e0bb092b": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_749ff2cd4f9df4": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_7cc59d00d4ff3b": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_88282028e17c11": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_89942acefe8d97": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_8d8788fa95dffb": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_8f8b74c095d8a8": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_9388b37834e4e4": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_990edaf0e41b35": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_9911632ebd6be3": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_993b12d39cf7cb": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_9cdd3acfdb958c": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_a2f74269620b3a": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_a35f22809b7aea": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_b1c5372f3656de": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_b4d11c8f9e7f10": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_bf44081f678cb5": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_c25a3b31bc4b18": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_c45a5b4e09e022": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_d32de4b75ba753": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_d523fd829fb436": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_daedad0d479af5": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_df3e76f3eec660": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_e74524825e5e5e": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_ea3d30595b5681": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_f0978efb1c1501": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_db79d63910dc9a::t_ffcca0364e5486": {
+      "tool": "trae",
+      "conversation_id": "6a463249092199e1bef8e1b6",
+      "session_id": "6a463249092199e1bef8e1b6",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    }
+  }
+}
