@@ -1,4 +1,4 @@
-## Interface: 120000
+## Interface: 120007, 120005, 120000
 ## Title: MyChat
 ## Notes: Native chat enhancement (enhance, not replace). MVP v0.1.
 ## Author: wow-player

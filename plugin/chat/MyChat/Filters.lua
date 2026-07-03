@@ -29,33 +29,71 @@ local function escapePattern(s)
   return (s:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1"))
 end
 
+-- Apply a text transform only to the "plain" segments of a chat message,
+-- leaving hyperlink escapes (|H...|h TEXT |h) and color escapes (|c... |r)
+-- untouched. Rewriting inside those escapes corrupts the link/format and
+-- makes WoW print the raw escape codes (the "inline format" bug).
+local function mapPlainSegments(text, transform)
+  if type(text) ~= "string" or text == "" then return text end
+  local out, i, len = {}, 1, #text
+  while i <= len do
+    -- Match a hyperlink block: |H...|h ... |h  (kept verbatim)
+    local hs, he = text:find("|H.-|h.-|h", i)
+    -- Match a color block: |c######## ... |r  (kept verbatim)
+    local cs, ce = text:find("|c%x%x%x%x%x%x%x%x.-|r", i)
+
+    -- Choose the nearest escape block, if any.
+    local ns_, ne
+    if hs and (not cs or hs <= cs) then ns_, ne = hs, he
+    elseif cs then ns_, ne = cs, ce end
+
+    if not ns_ then
+      -- No more escapes: transform the remaining plain tail.
+      out[#out + 1] = transform(text:sub(i))
+      break
+    end
+
+    if ns_ > i then
+      out[#out + 1] = transform(text:sub(i, ns_ - 1))
+    end
+    out[#out + 1] = text:sub(ns_, ne)  -- escape block, verbatim
+    i = ne + 1
+  end
+  return table.concat(out)
+end
+
 -- Highlight configured keywords by wrapping each occurrence in color.
--- Case-insensitive; operates on display text.
+-- Case-insensitive; only touches plain text, never link/color escapes.
 function Filters:HighlightKeywords(text)
   if type(text) ~= "string" then return text end
-  if not cfg("profile.highlightKeywords") then return text end
-  local keywords = cfg("profile.highlightKeywords", {})
-  for _, kw in ipairs(keywords) do
-    if type(kw) == "string" and kw ~= "" then
-      local pattern = escapePattern(kw)
-      text = text:gsub(pattern, function(match)
-        return Utils.ColorText(KEYWORD_COLOR, match)
-      end)
+  local keywords = cfg("profile.highlightKeywords")
+  if type(keywords) ~= "table" or #keywords == 0 then return text end
+  return mapPlainSegments(text, function(seg)
+    for _, kw in ipairs(keywords) do
+      if type(kw) == "string" and kw ~= "" then
+        local pattern = escapePattern(kw)
+        seg = seg:gsub(pattern, function(match)
+          return Utils.ColorText(KEYWORD_COLOR, match)
+        end)
+      end
     end
-  end
-  return text
+    return seg
+  end)
 end
 
 -- Highlight the player's own name when it appears in a message.
+-- Only touches plain text, never link/color escapes.
 function Filters:HighlightSelf(text)
   if type(text) ~= "string" then return text end
   if not cfg("profile.highlightSelfName", true) then return text end
   local name = self.selfName or UnitName("player")
   if not name or name == "" then return text end
   local pattern = escapePattern(name)
-  return (text:gsub(pattern, function(match)
-    return Utils.ColorText(SELF_COLOR, match)
-  end))
+  return mapPlainSegments(text, function(seg)
+    return (seg:gsub(pattern, function(match)
+      return Utils.ColorText(SELF_COLOR, match)
+    end))
+  end)
 end
 
 -- Sliding-window duplicate detection keyed on author+plain text.
@@ -66,16 +104,17 @@ function Filters:IsDuplicate(message)
   if message.messageClass == C.CLASS.SYSTEM then return false, 1 end
 
   local now = GetTime()
+  local window = tonumber(cfg("profile.dupWindowSeconds")) or C.DUPLICATE_WINDOW_SECONDS
   local key = (message.author or "?") .. "\0" .. message.textPlain
   local entry = self.dupWindow[key]
 
   if entry and entry.expires > now then
     entry.count = entry.count + 1
-    entry.expires = now + C.DUPLICATE_WINDOW_SECONDS
+    entry.expires = now + window
     return true, entry.count
   end
 
-  self.dupWindow[key] = { count = 1, expires = now + C.DUPLICATE_WINDOW_SECONDS }
+  self.dupWindow[key] = { count = 1, expires = now + window }
   self:_prune(now)
   return false, 1
 end

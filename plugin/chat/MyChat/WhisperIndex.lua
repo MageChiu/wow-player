@@ -33,7 +33,9 @@ function WhisperIndex:Record(message)
     if list[i] == name then table.remove(list, i) end
   end
   table.insert(list, 1, name)
-  while #list > C.WHISPER_HISTORY_LIMIT do
+  local limit = tonumber(ns.Config and ns.Config:Get("profile.whisperHistoryLimit"))
+    or C.WHISPER_HISTORY_LIMIT
+  while #list > limit do
     table.remove(list)
   end
 end
@@ -52,6 +54,12 @@ function WhisperIndex:ReplyLast(text)
   end
   if type(text) ~= "string" or Utils.Trim(text) == "" then
     Utils.Print("用法: /mychat reply <内容>")
+    return false
+  end
+
+  -- Safe mode: never send chat on the player's behalf.
+  if ns.Config and ns.Config:Get("profile.safeMode") then
+    Utils.Print("安全模式已开启，未发送密语。关闭安全模式后可用 /mychat reply。")
     return false
   end
 
