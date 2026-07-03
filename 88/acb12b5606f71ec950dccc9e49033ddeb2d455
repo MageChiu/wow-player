@@ -1,0 +1,269 @@
+plugin/chat/MyChat/Filters.lua
+  s_ca044d1532b8b0::t_fe61071c0f4d20 32-64,66,69-78,80-81,85,92-96
+plugin/chat/PACKAGING_RESEARCH.md
+  s_ca044d1532b8b0::t_7a70b310c1a315 8-23
+plugin/chat/MyChat/Init.lua
+  s_ca044d1532b8b0::t_8dc478efb718ee 5-7 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a47e950092199e1bef8eece","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[5,7]}]}]}
+plugin/chat/README.md
+  s_ca044d1532b8b0::t_63c0b6758c16b2 68-70,76-77
+  s_ca044d1532b8b0::t_9dd41c2fd9da27 51
+plugin/chat/MyChat/MyChat.toc
+  s_ca044d1532b8b0::t_277959dd9b0e3f 1
+.github/workflows/mychat-release.yml
+  s_ca044d1532b8b0::t_5c9bc016ca3239 3,5-11,20,27,30,42-48
+plugin/chat/MyChat/Data/Defaults.lua
+  s_ca044d1532b8b0::t_54c44169261901 10-13
+  s_ca044d1532b8b0::t_66ec843e41385a 8 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a47e8fb092199e1bef8eec8","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Single":8}]}]}
+plugin/chat/MyChat/NativeEnhancer.lua
+  s_ca044d1532b8b0::t_ed51b56c83679a 21-24,26,36-42,44,47,54
+plugin/chat/MyChat/Commands.lua
+  s_ca044d1532b8b0::t_c5dabeacb1dda4 17-19,32-34,37-40,42-49,51
+  s_ca044d1532b8b0::t_40f4c5bfe0cf59 41
+plugin/chat/MyChat/UI/SettingsPanel.lua
+  s_ca044d1532b8b0::t_b0265b25b8fc77 50-53 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a47ec88092199e1bef8eef3","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[50,53]}]}]}
+  s_ca044d1532b8b0::t_d14e5da7f85342 68-69,72,75-79,94,97-98,101,104-107
+  s_ca044d1532b8b0::t_6d0a187bf33eb8 64-65,67,70-71,73-74,80-82,99-100,102-103
+plugin/chat/RELEASING.md
+  s_ca044d1532b8b0::t_111cf4ed2f6b31 74-78,81-82,90,93-99
+plugin/chat/MyChat/UI/ChannelBar.lua
+  s_ca044d1532b8b0::t_c5c609a0cfbbb0 217-226
+  s_ca044d1532b8b0::t_8e34c4c5584e9f 6-11,15-16,18,20,24,42,44-45,47-49,60,66-67,69,76-82,105,108,132-133,135-145,147-150,152-154,156-159,161-167,169-174,177-189,193-197,200-203,216,245-246,249-250,256,263
+  s_ca044d1532b8b0::t_3856682885b437 110
+  s_ca044d1532b8b0::t_469f4aa8dc8d8d 227-232,235
+  s_ca044d1532b8b0::t_af2a369d2fc82e 237-240
+  s_ca044d1532b8b0::t_e4f2bd706c922e 85-88,90-95,97-101
+  s_ca044d1532b8b0::t_7ac0ce5d6bf02f 22-23,29-31,34,43,46
+  s_ca044d1532b8b0::t_a5fbfa56d5209e 25-28,32-33,35-41,50-59 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a47ec66092199e1bef8eeed","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Range":[25,28]},{"Range":[32,33]},{"Range":[35,41]},{"Range":[50,59]}]}]}
+  s_ca044d1532b8b0::t_83ccd109680efd 96 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a47ec7c092199e1bef8eef0","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Single":96}]}]}
+  s_ca044d1532b8b0::t_ec77de7646e2e2 21,83,134,151,155,160
+  s_ca044d1532b8b0::t_40d3ef25a26e23 115-122
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "88acb12b5606f71ec950dccc9e49033ddeb2d455",
+  "prompts": {},
+  "sessions": {
+    "s_ca044d1532b8b0": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4633dd092199e1bef8e1bf",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": null
+    }
+  },
+  "attestation_metadata": {
+    "plugin/chat/MyChat/Data/Defaults.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_66ec843e41385a",
+        "line_ranges": [
+          {
+            "Single": 8
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a47e8fb092199e1bef8eec8",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Single": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/Init.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_8dc478efb718ee",
+        "line_ranges": [
+          {
+            "Range": [
+              5,
+              7
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a47e950092199e1bef8eece",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  5,
+                  7
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/UI/ChannelBar.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_a5fbfa56d5209e",
+        "line_ranges": [
+          {
+            "Range": [
+              25,
+              28
+            ]
+          },
+          {
+            "Range": [
+              32,
+              33
+            ]
+          },
+          {
+            "Range": [
+              35,
+              41
+            ]
+          },
+          {
+            "Range": [
+              50,
+              59
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a47ec66092199e1bef8eeed",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  25,
+                  28
+                ]
+              },
+              {
+                "Range": [
+                  32,
+                  33
+                ]
+              },
+              {
+                "Range": [
+                  35,
+                  41
+                ]
+              },
+              {
+                "Range": [
+                  50,
+                  59
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hash": "s_ca044d1532b8b0::t_83ccd109680efd",
+        "line_ranges": [
+          {
+            "Single": 96
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a47ec7c092199e1bef8eef0",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Single": 96
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugin/chat/MyChat/UI/SettingsPanel.lua": [
+      {
+        "hash": "s_ca044d1532b8b0::t_b0265b25b8fc77",
+        "line_ranges": [
+          {
+            "Range": [
+              50,
+              53
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a47ec88092199e1bef8eef3",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Range": [
+                  50,
+                  53
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "remote_transcripts": {
+    "s_ca044d1532b8b0": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_66ec843e41385a": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_83ccd109680efd": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_8dc478efb718ee": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_a5fbfa56d5209e": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_ca044d1532b8b0::t_b0265b25b8fc77": {
+      "tool": "trae",
+      "conversation_id": "6a4633dd092199e1bef8e1bf",
+      "session_id": "6a4633dd092199e1bef8e1bf",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    }
+  }
+}
