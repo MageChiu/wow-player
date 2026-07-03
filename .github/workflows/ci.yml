@@ -1,0 +1,66 @@
+name: CI
+
+# 提交与 PR 时运行质量门槛。工作流只作薄触发层，
+# 实际命令收敛在 manager/wow-addon-manager/Makefile。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# 同一分支的新提交取消旧运行。
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: manager/wow-addon-manager
+
+jobs:
+  quality-gate:
+    name: 质量门槛（Ubuntu）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 Tauri 系统依赖
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            libappindicator3-dev \
+            librsvg2-dev \
+            patchelf \
+            libgtk-3-dev
+
+      - name: 安装 Rust 工具链
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: 缓存 Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            manager/wow-addon-manager/src-tauri/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('manager/wow-addon-manager/src-tauri/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: 安装 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: manager/wow-addon-manager/pnpm-lock.yaml
+
+      - name: 运行 CI 门槛（make ci）
+        run: make ci

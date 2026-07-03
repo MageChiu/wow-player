@@ -1,0 +1,56 @@
+name: Release MyChat
+
+# 打 mychat-v* 前缀 tag 时，自动打包 plugin/chat/MyChat 并发布。
+# 使用 BigWigsMods/packager：产出 GitHub Release，并（配置了对应 secret 时）
+# 上传到 CurseForge / WoWInterface / Wago。
+#
+# 前缀 tag 用于 monorepo 中区分不同插件的发布，避免与 manager 的 v* tag 冲突。
+# 注意：packager 以 tag 名作为发布标签，故平台上的标签会带 "mychat-" 前缀；
+# 插件实际版本以 MyChat.toc 的 ## Version 为准（游戏内显示正确）。
+
+on:
+  push:
+    tags:
+      - "mychat-v*"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # packager 需要写权限来创建 Release
+
+jobs:
+  release:
+    name: 打包并发布 MyChat
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码（含完整历史）
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # packager 需要完整历史生成 changelog
+
+      - name: 发布前本地校验（版本一致 + .toc 引用齐全）
+        run: |
+          chmod +x plugin/chat/package.sh
+          plugin/chat/package.sh --check
+
+      - name: 打包并发布（BigWigsMods/packager）
+        uses: BigWigsMods/packager@v2
+        with:
+          # -t 指定插件目录（monorepo 子目录），只打包 MyChat
+          args: -t plugin/chat/MyChat
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}          # GitHub Release（自带，无需手动配）
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}              # CurseForge（可选）
+          WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}      # WoWInterface（可选）
+          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}      # Wago（可选）
+
+      - name: 生成本地 zip 并汇总到统一产出目录
+        run: |
+          plugin/chat/package.sh --output "${GITHUB_WORKSPACE}/plugin/dist"
+          ls -la "${GITHUB_WORKSPACE}/plugin/dist"
+
+      - name: 上传打包产物（artifact）
+        uses: actions/upload-artifact@v4
+        with:
+          name: mychat-package
+          if-no-files-found: error
+          path: plugin/dist/*.zip

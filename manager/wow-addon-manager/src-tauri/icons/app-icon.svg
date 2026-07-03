@@ -1,0 +1,94 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3a63"/>
+      <stop offset="0.5" stop-color="#1c2747"/>
+      <stop offset="1" stop-color="#0e1630"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe9a8"/>
+      <stop offset="0.45" stop-color="#f5c451"/>
+      <stop offset="1" stop-color="#b8801e"/>
+    </linearGradient>
+    <linearGradient id="wmark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff3cf"/>
+      <stop offset="0.5" stop-color="#f6c95a"/>
+      <stop offset="1" stop-color="#c8912a"/>
+    </linearGradient>
+    <radialGradient id="gem" cx="0.5" cy="0.4" r="0.65">
+      <stop offset="0" stop-color="#8fe3ff"/>
+      <stop offset="0.5" stop-color="#2fa3e0"/>
+      <stop offset="1" stop-color="#12507f"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3a5da8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#3a5da8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 背板柔光 -->
+  <circle cx="512" cy="512" r="470" fill="url(#glow)"/>
+
+  <!-- 盾牌外金边 -->
+  <path d="M512 96
+           L860 210
+           Q878 216 878 236
+           L878 560
+           Q878 760 512 936
+           Q146 760 146 560
+           L146 236
+           Q146 216 164 210
+           Z"
+        fill="url(#gold)"/>
+
+  <!-- 盾牌主体 -->
+  <path d="M512 150
+           L826 253
+           Q840 258 840 272
+           L840 556
+           Q840 730 512 888
+           Q184 730 184 556
+           L184 272
+           Q184 258 198 253
+           Z"
+        fill="url(#shield)"/>
+
+  <!-- 内描金线 -->
+  <path d="M512 150
+           L826 253
+           Q840 258 840 272
+           L840 556
+           Q840 730 512 888
+           Q184 730 184 556
+           L184 272
+           Q184 258 198 253
+           Z"
+        fill="none" stroke="#f5c451" stroke-opacity="0.35" stroke-width="10"/>
+
+  <!-- 中央符文宝石 -->
+  <g>
+    <polygon points="512,300 566,352 512,404 458,352"
+             fill="url(#gem)" stroke="#ffe9a8" stroke-width="6"/>
+    <polygon points="512,318 548,352 512,386 476,352" fill="#bfefff" fill-opacity="0.35"/>
+  </g>
+
+  <!-- 尖角 W 徽标 -->
+  <path d="M300 430
+           L372 430
+           L430 620
+           L470 470
+           L554 470
+           L594 620
+           L652 430
+           L724 430
+           L636 760
+           L556 760
+           L512 604
+           L468 760
+           L388 760
+           Z"
+        fill="url(#wmark)" stroke="#7a5210" stroke-width="6" stroke-linejoin="round"/>
+
+  <!-- 底部铆钉装饰 -->
+  <circle cx="512" cy="812" r="16" fill="url(#gold)"/>
+</svg>

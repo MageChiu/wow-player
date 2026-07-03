@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dist-ssr/
+
+# tauri / rust
+src-tauri/target/
+
+# logs & local db
+*.log
+*.sqlite
+*.sqlite-*
+
+# editor / os
+.DS_Store
+.idea/
+.vscode/
+*.local

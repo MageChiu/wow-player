@@ -1,0 +1,7 @@
+## Title: 大脚插件
+## Version: 3.2.1
+## Author: 大脚团队
+## Notes: 中文说明, 常用工具集合
+## Dependencies: 依赖A, 依赖B
+
+BigFoot.lua

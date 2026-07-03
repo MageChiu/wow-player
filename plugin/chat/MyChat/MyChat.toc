@@ -1,0 +1,27 @@
+## Interface: 120000
+## Title: MyChat
+## Notes: Native chat enhancement (enhance, not replace). MVP v0.1.
+## Author: wow-player
+## Version: 0.1.0
+## SavedVariables: MyChatDB
+
+Constants.lua
+Utils.lua
+Core.lua
+Data\Defaults.lua
+Config.lua
+MessageBus.lua
+Diagnostics.lua
+CombatGuard.lua
+Events.lua
+Parser.lua
+Filters.lua
+Router.lua
+Channels.lua
+NativeEnhancer.lua
+WhisperIndex.lua
+Commands.lua
+UI\SettingsPanel.lua
+UI\MirrorPanel.lua
+UI\ChannelBar.lua
+Init.lua

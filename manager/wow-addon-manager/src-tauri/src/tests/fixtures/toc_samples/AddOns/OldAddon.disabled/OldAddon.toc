@@ -1,0 +1,7 @@
+## Interface: 110002
+## Title: Details
+## Version: 11.0.2
+## Author: Terciob
+## SavedVariables: DetailsDB
+
+Details.lua
