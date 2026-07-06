@@ -1,0 +1,90 @@
+plugin/role-manager/RoleManager/UI/SettingsPanel.lua
+  s_22679dc7fb452c::t_ecdcbaa8e7978c 28-29
+  s_22679dc7fb452c::t_320cce054e410d 1-27,30-185
+plugin/role-manager/package.sh
+  s_22679dc7fb452c::t_f04fbbccba1e8f 1-128
+plugin/role-manager/RoleManager/UI/MinimapButton.lua
+  s_22679dc7fb452c::t_94fa2f514cfb9d 1-2,8-13,17-19,26-59,61-64,66-106,108-118,120-124
+  s_22679dc7fb452c::t_b8215fb88f2b92 107
+  s_22679dc7fb452c::t_4bb1a0ef94af0f 20-25
+  s_22679dc7fb452c::t_c7dbd65d2ad56b 14-16
+  s_22679dc7fb452c::t_437e0c1bf2f844 3-7,60,65,119
+plugin/role-manager/RoleManager/Data/Defaults.lua
+  s_22679dc7fb452c::t_93167e2b13f19e 14-16,18-20,24-26
+  s_22679dc7fb452c::t_1934895f416968 1-13,17,21-23,27-58
+plugin/role-manager/RoleManager/Constants.lua
+  s_22679dc7fb452c::t_1cc4b684f9bf51 1-7,9,14-46
+  s_22679dc7fb452c::t_b838790ac0d393 10-13
+  s_22679dc7fb452c::t_7aac222c0f5bab 8
+plugin/chat/README.md
+  s_ca044d1532b8b0::t_5f0218643604ab 160
+  s_ca044d1532b8b0::t_67ff56c3cd5f42 133
+plugin/role-manager/RoleManager/Commands.lua
+  s_22679dc7fb452c::t_3d9bd974059546 19,23
+  s_22679dc7fb452c::t_0c144d2031e40e 49,53
+  s_22679dc7fb452c::t_f1845b67a0c351 1-18,20-22,24-48,50-52,54-132,135-165
+  s_22679dc7fb452c::t_442e3d05a0e73f 133-134
+plugin/role-manager/RoleManager/Init.lua
+  s_22679dc7fb452c::t_6d0d5ff41e74c1 1-13
+plugin/chat/MyChat/Channels.lua
+  s_ca044d1532b8b0::t_bc98cd9874bdde 35-38
+plugin/chat/MyChat/MyChat.toc
+  s_ca044d1532b8b0::t_b80ab4f8d7f3c6 5
+plugin/chat/MyChat/Constants.lua
+  s_ca044d1532b8b0::t_e3fe722ea1aeb4 7
+plugin/role-manager/RoleManager/RoleManager.toc
+  s_22679dc7fb452c::t_d835f7a3996bc3 18
+  s_22679dc7fb452c::t_d9704f9cc38043 5
+plugin/role-manager/RoleManager/Utils.lua
+  s_22679dc7fb452c::t_b389cbc234e8c1 1-28,35,43-105
+  s_22679dc7fb452c::t_5219b13c03a38d 41-42
+  s_22679dc7fb452c::t_d1f2e4445b6f0e 29-34,36-40
+plugin/role-manager/RoleManager/Store.lua
+  s_22679dc7fb452c::t_a021d04578380b 87
+  s_22679dc7fb452c::t_f28597fe74908f 85,96
+  s_22679dc7fb452c::t_ab9f6b8ce612a0 1-14,16-21,24-84,86,88-95,97-98,100-103,116-117,120,122,124-142
+  s_22679dc7fb452c::t_26b3a3e326f88c 99,104-115
+  s_22679dc7fb452c::t_9661bd069ad885 118-119,121,123
+  s_22679dc7fb452c::t_d605350c2bd72a 15,22-23
+plugin/role-manager/RoleManager/Core.lua
+  s_22679dc7fb452c::t_6a330f63519720 1-40,42-56
+  s_22679dc7fb452c::t_683b33beb709e2 41
+plugin/role-manager/RoleManager/Config.lua
+  s_22679dc7fb452c::t_2b329c6d228bca 1-61,97-108
+  s_22679dc7fb452c::t_d84d24d967b8cd 62-96
+plugin/role-manager/RoleManager/Collector.lua
+  s_22679dc7fb452c::t_fc10fe10ad3b3b 1-92,95-97,110-111,114,128-180
+  s_22679dc7fb452c::t_9e03f5479da1fc 93-94,98-109,112-113,115-127
+plugin/role-manager/RoleManager/UI/OverviewFrame.lua
+  s_22679dc7fb452c::t_05f1131d31c72d 18-19,21-29,33,44,47,53-57
+  s_22679dc7fb452c::t_647aaec7ca5739 96,103-105,120,132-139,146,157,159-160
+  s_22679dc7fb452c::t_e4f63b83eeb6de 1-17,20,30-32,34-43,45-46,48-52,58-95,97-102,106-119,121-131,140-145,147-156,158,161-186,197-229
+  s_22679dc7fb452c::t_64cf4f623813a3 188-196
+  s_22679dc7fb452c::t_2b69c7531bff1b 187
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "c36ff6b8fdca3a08e03a9c133947b7cc34be32ee",
+  "prompts": {},
+  "sessions": {
+    "s_22679dc7fb452c": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4b78e5c7feb1b2fd558b80",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": "zhaopeng.charles <zhaopeng.charles@bytedance.com>"
+    },
+    "s_ca044d1532b8b0": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4633dd092199e1bef8e1bf",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": null
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
