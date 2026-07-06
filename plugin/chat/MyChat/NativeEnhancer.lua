@@ -4,21 +4,9 @@ local NativeEnhancer = {}
 ns.NativeEnhancer = ns.Core:RegisterModule("NativeEnhancer", NativeEnhancer)
 
 local C = ns.Constants
-local Utils = ns.Utils
-
-local date = date
 
 -- Events whose native display we augment via AddMessageEventFilter.
--- We intentionally exclude CHAT_MSG_SYSTEM from author coloring.
 local FILTERED_EVENTS = C.CHAT_EVENTS
-
-local function cfg(path, default)
-  local Config = ns.Config
-  if not Config then return default end
-  local v = Config:Get(path)
-  if v == nil then return default end
-  return v
-end
 
 function NativeEnhancer:Init()
   local filter = function(chatFrame, event, ...)
@@ -27,76 +15,87 @@ function NativeEnhancer:Init()
   for _, event in ipairs(FILTERED_EVENTS) do
     ChatFrame_AddMessageEventFilter(event, filter)
   end
+
+  self:EnableArrowHistory()
 end
 
--- Timestamp + channel abbreviation prefix.
-function NativeEnhancer:BuildPrefix(message)
-  local parts = {}
-  if cfg("profile.showTimestamps", true) then
-    parts[#parts + 1] = "|cff808080[" .. date("%H:%M") .. "]|r"
-  end
-  if cfg("profile.abbreviateChannels", true) then
-    local abbrev = C.CHANNEL_ABBREV[message.messageClass]
-    if abbrev then
-      parts[#parts + 1] = "|cff8080ff[" .. abbrev .. "]|r"
+-- Let Up/Down arrows browse the native sent-message history on every chat edit
+-- box (Blizzard default requires Alt+Up/Down). AltArrowKeyMode gets reset back
+-- to the default by the game at various times (notably entering a PvP
+-- battleground / arena, which rebuilds chat state). Setting it once at login is
+-- therefore not enough. The robust fix used by mature chat addons is to hook
+-- each edit box's OnEditFocusGained and re-apply it every time the box opens,
+-- so no matter when the game resets it, the next time you start typing it is
+-- forced back off. Pure native tweak: no taint, no message interception.
+function NativeEnhancer:EnableArrowHistory()
+  local function harden(edit)
+    if not edit or not edit.SetAltArrowKeyMode then return end
+    edit:SetAltArrowKeyMode(false)
+    if not edit.__myChatArrowHooked then
+      edit.__myChatArrowHooked = true
+      -- Re-apply on every focus gain; also cover OnShow for good measure.
+      edit:HookScript("OnEditFocusGained", function(box)
+        box:SetAltArrowKeyMode(false)
+      end)
+      edit:HookScript("OnShow", function(box)
+        box:SetAltArrowKeyMode(false)
+      end)
     end
   end
-  if #parts == 0 then return "" end
-  return table.concat(parts, "") .. " "
-end
 
--- Return a class-colored sender name, or nil to leave untouched.
--- guid is CHAT_MSG arg12. Falls back gracefully when unavailable.
-function NativeEnhancer:ColorizeAuthor(author, guid)
-  if not cfg("profile.colorPlayerNamesByClass", true) then return nil end
-  if not author or author == "" or not guid or guid == "" then return nil end
-  local ok, _, classFile = pcall(GetPlayerInfoByGUID, guid)
-  if not ok or not classFile then return nil end
-  local color = RAID_CLASS_COLORS and RAID_CLASS_COLORS[classFile]
-  if not color then return nil end
-  return Utils.ColorText(color.colorStr or C.DEFAULT_AUTHOR_COLOR, author)
+  local apply = function()
+    local n = (NUM_CHAT_WINDOWS or 10)
+    for i = 1, n do
+      harden(_G["ChatFrame" .. i .. "EditBox"])
+    end
+  end
+  apply()
+
+  -- Reapply on login/reload and each world entry (zoning, entering BG/arena).
+  local f = CreateFrame("Frame")
+  f:RegisterEvent("PLAYER_ENTERING_WORLD")
+  f:SetScript("OnEvent", function()
+    ns.Core:SafeCall(apply)
+  end)
+  self.arrowHistoryFrame = f
 end
 
 -- AddMessageEventFilter callback. Never blocks messages; only rewrites the
--- text and (optionally) the sender arg. Returns false + modified args so the
--- native chat system still formats and displays the line.
+-- message TEXT (keyword/self highlight, dedup marker). It must NOT touch the
+-- sender argument: wrapping the author in color codes corrupts the channel
+-- hyperlink (|Hplayer:...|h) and makes WoW print raw escape codes.
+-- Player-name class coloring is left to the 12.0 native chat system.
 function NativeEnhancer:MessageFilter(chatFrame, event, ...)
-  local ok, result, newMsg, newAuthor = pcall(function(...)
+  local ok, result, newMsg = pcall(function(...)
     local args = { ... }
     local msg = args[1]
-    local author = args[2]
-    local guid = args[12]
 
     local Parser = ns.Parser
     if not Parser then return false end
     local message = Parser:Normalize(event, ...)
     if not message then return false end
 
-    local text = msg
     local Filters = ns.Filters
-    if Filters then
-      message.textRaw = msg
-      Filters:Apply(message)
-      text = message.displayText or msg
+    if not Filters then return false end
+    message.textRaw = msg
+    Filters:Apply(message)
+    local text = message.displayText or msg
+    if text == msg then
+      -- Nothing changed; leave the line untouched.
+      return false
     end
-
-    local prefix = self:BuildPrefix(message)
-    local finalMsg = prefix .. (text or "")
-
-    local coloredAuthor = self:ColorizeAuthor(author, guid)
-    return true, finalMsg, coloredAuthor or author
+    return true, text
   end, ...)
 
-  -- On any error, do nothing (native display unaffected).
+  -- On any error or no-op, do nothing (native display unaffected).
   if not ok or not result then
     local diag = ns.Core:GetModule("Diagnostics")
     if diag and diag.Error and not ok then diag:Error("NativeEnhancer", result) end
     return false
   end
 
-  -- Rebuild the arg list with rewritten text/author, preserve the rest.
+  -- Rewrite only the message text; preserve every other arg (incl. sender).
   local args = { ... }
   args[1] = newMsg
-  args[2] = newAuthor
   return false, unpack(args)
 end

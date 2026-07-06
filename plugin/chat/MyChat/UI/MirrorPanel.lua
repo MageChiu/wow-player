@@ -58,7 +58,8 @@ function MirrorPanel:_ensureFrame()
   sf:SetPoint("BOTTOMRIGHT", -10, 10)
   sf:SetFontObject(ChatFontNormal)
   sf:SetJustifyH("LEFT")
-  sf:SetMaxLines(MAX_LINES)
+  local maxLines = tonumber(ns.Config and ns.Config:Get("profile.mirrorMaxLines")) or MAX_LINES
+  sf:SetMaxLines(maxLines)
   sf:SetFading(false)
   sf:SetInsertMode("BOTTOM")
   f.messages = sf
@@ -93,6 +94,14 @@ function MirrorPanel:Push(message)
   if not (ns.Config and ns.Config:Get("profile.mirrorPanelEnabled")) then return end
   if not self.frame or not self.frame:IsShown() then return end
   if not message then return end
+
+  -- System messages (login/logout notices, "player not online" whisper
+  -- errors from other addons, etc.) are game-generated noise, not chat the
+  -- user cares to mirror. Skip them unless explicitly enabled.
+  if message.messageClass == C.CLASS.SYSTEM
+    and not (ns.Config and ns.Config:Get("profile.mirrorSystemMessages")) then
+    return
+  end
 
   local Router = ns.Router
   local views = Router and Router:Route(message) or {}

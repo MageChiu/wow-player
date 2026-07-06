@@ -32,6 +32,8 @@ end
 function Channels:JoinConfigured()
   local Config = ns.Config
   if not Config then return end
+  -- Safe mode: never auto-operate the game's channel list.
+  if Config:Get("profile.safeMode") then return end
   local channels = Config:Get("profile.autoJoinChannels") or {}
   for _, name in ipairs(channels) do
     if type(name) == "string" and name ~= "" then

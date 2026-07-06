@@ -71,22 +71,15 @@ MyChat-0.1.0.zip
 
 ## 3.5 自动发布（GitHub Actions，推荐）
 
-已配置工作流 `.github/workflows/mychat-release.yml`：**推带 `mychat-v` 前缀的 tag 即自动打包并发布**，无需手动上传。
+已配置工作流 `.github/workflows/mychat-release.yml`：**推带 `mychat-v` 前缀的 tag 即自动打包并发布 GitHub Release**，无需手动上传。
+
+> 为什么不用 BigWigsMods/packager？它要求“仓库根即插件根”，不支持本仓库这种 monorepo
+> 深层子目录（`plugin/chat/MyChat`）。因此改用本仓库自带的 `package.sh`（专为该子目录设计、
+> 已验证）打包，再用成熟的 `softprops/action-gh-release` 上传，与 manager 的 `release.yml` 同一模式。
 
 ### 一次性准备
-1. **仓库权限**：Settings → Actions → General → Workflow permissions 选 **Read and write**（否则 packager 无法创建 Release）。
-2. **平台 token（可选，只发 GitHub 可跳过）**：在 Settings → Secrets and variables → Actions 添加：
-   - `CF_API_KEY`（CurseForge）
-   - `WOWI_API_TOKEN`（WoWInterface）
-   - `WAGO_API_TOKEN`（Wago）
-   - `GITHUB_TOKEN` 自带，无需添加。
-3. **平台项目 ID（用哪个平台就填哪个）**：在 [MyChat.toc](./MyChat/MyChat.toc) 加：
-   ```
-   ## X-Curse-Project-ID: <id>
-   ## X-WoWI-ID: <id>
-   ## X-Wago-ID: <id>
-   ```
-   未配置 token 的平台会被 packager 自动跳过。
+1. **仓库权限**：Settings → Actions → General → Workflow permissions 选 **Read and write**（否则无法创建 Release）。
+2. GitHub Release 用自带的 `GITHUB_TOKEN`，**无需额外配置任何 secret**。
 
 ### 发布动作
 ```bash
@@ -94,18 +87,16 @@ MyChat-0.1.0.zip
 git tag -a mychat-v0.1.0 -m "MyChat 0.1.0"
 git push origin mychat-v0.1.0
 ```
-推送后到 GitHub **Actions** 标签页查看 `Release MyChat` 运行结果。
+推送后到 GitHub **Actions** 标签页查看 `Release MyChat` 运行结果，完成后在 **Releases** 页可见附带的 `MyChat-0.1.0.zip`。
 
 ### 工作流做了什么
-1. `checkout`（`fetch-depth: 0`，供生成 changelog）。
-2. 跑 `plugin/chat/package.sh --check` 做发布前校验（版本一致、`.toc` 引用齐全）。
-3. `BigWigsMods/packager -t plugin/chat/MyChat`：只打包本插件，创建 GitHub Release，并按已配置的 token 上传到 CurseForge/WoWInterface/Wago（打包时依 [.pkgmeta](./MyChat/.pkgmeta) 排除杂项）。
-4. 再跑本地 `package.sh` 把 zip 汇总到 `plugin/dist/` 并上传为 artifact。
+1. `checkout` 仓库。
+2. 跑 `plugin/chat/package.sh --output plugin/dist`：内含发布前校验（版本一致、`.toc` 引用齐全），产出 `MyChat-<version>.zip` 到统一目录 `plugin/dist/`。
+3. 上传 zip 为 artifact。
+4. 用 `softprops/action-gh-release` 创建 GitHub Release 并附上 zip（自动生成 release notes）。
 
-### 已知限制（monorepo + 前缀 tag）
-- packager 以 **tag 名**作为平台上的发布标签，因此平台标签会显示成 `mychat-v0.1.0`（带前缀）。
-- 插件**实际版本**以 `.toc` 的 `## Version`（`0.1.0`）为准，游戏内 `/mychat` 显示正确。
-- 若日后需要平台标签纯净（`v0.1.0`），可把 `plugin/chat/MyChat` 用 `git subtree` 推到独立发布仓库，在那里跑标准 packager（见 [PACKAGING_RESEARCH.md](./PACKAGING_RESEARCH.md) 方案 5-2）。
+### 第三方平台（CurseForge / WoWInterface / Wago）
+本工作流只发 GitHub Release。若要自动上传到第三方平台，可在工作流末尾**追加各平台的官方 upload action**（各自需要在 Settings → Secrets 配 API token，并在平台建项目拿 ID）。它们接收 `plugin/dist/*.zip` 即可。手动上传步骤见下方 §4。
 
 ---
 

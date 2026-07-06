@@ -5,7 +5,22 @@
 
 ---
 
-## 1. 结论速览
+## 0. 最终决策（实测后更新）
+
+> **实测结论**：BigWigsMods/packager **不支持 monorepo 深层子目录**。它在“仓库根”查找 `.toc`
+> （`release.sh` 用 `find *.toc -maxdepth 0`），且 `move-folders` 的源路径不能含 `/`（只能移动
+> 仓库根下一级目录），因此无法直接打包 `plugin/chat/MyChat`。用 `-t plugin/chat/MyChat` 会报
+> `No Git checkout found`，因为 `-t` 指的是**含 `.git` 的仓库根**，不是插件目录。
+>
+> **采用方案**：放弃 packager 作为 GitHub Actions 打包器，改用本仓库自带的 [package.sh](./package.sh)
+> （专为该子目录设计、已验证）打包，再用 `softprops/action-gh-release` 上传 GitHub Release
+> （与 manager 的 `release.yml` 同一成熟模式）。工作流见 `.github/workflows/mychat-release.yml`。
+> 第三方平台（CurseForge/WoWInterface/Wago）后续如需自动上传，各自追加官方 upload action，
+> 消费 `plugin/dist/*.zip` 即可。下文 §1–§8 为原始调研记录，保留备查。
+
+---
+
+## 1. 结论速览（原始调研，见 §0 最终决策）
 
 WoW 插件社区的**事实标准**是 [BigWigsMods/packager](https://github.com/BigWigsMods/packager)：一个开源打包器，配合 GitHub Actions，在**打 git tag 时自动**完成打包并上传到四个目标：
 
