@@ -32,8 +32,10 @@ end
 function Channels:JoinConfigured()
   local Config = ns.Config
   if not Config then return end
-  -- Safe mode: never auto-operate the game's channel list.
-  if Config:Get("profile.safeMode") then return end
+  -- Joining a channel is a low-risk action (equivalent to the player typing
+  -- /join). It is intentionally NOT gated by safeMode — only truly intrusive
+  -- actions like auto-sending whispers are. This keeps auto-join reliable
+  -- regardless of the safeMode flag (including stale saved values).
   local channels = Config:Get("profile.autoJoinChannels") or {}
   for _, name in ipairs(channels) do
     if type(name) == "string" and name ~= "" then

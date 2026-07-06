@@ -1,0 +1,19 @@
+## Interface: 120007, 120005, 120000
+## Title: RoleManager
+## Notes: 账号下多角色金币/代币/宝库/大秘境/团本进度汇总（增强而不接管）。
+## Author: wow-player
+## Version: 0.1.2
+## SavedVariables: RoleManagerDB
+
+Constants.lua
+Utils.lua
+Core.lua
+Data\Defaults.lua
+Config.lua
+Collector.lua
+Store.lua
+Commands.lua
+UI\OverviewFrame.lua
+UI\MinimapButton.lua
+UI\SettingsPanel.lua
+Init.lua

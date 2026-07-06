@@ -4,7 +4,7 @@ local C = {}
 ns.Constants = C
 
 C.ADDON_TITLE = "MyChat"
-C.VERSION = "0.1.0"
+C.VERSION = "0.1.1"
 
 -- Bus topics: modules communicate only through these named channels.
 C.TOPIC = {

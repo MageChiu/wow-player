@@ -1,0 +1,20 @@
+## Interface: 120007, 120005, 120000
+## Title: QuickDisenchant
+## Notes: 半自动快速分解：勾选背包内可分解装备，连点/连按逐件分解（增强而不接管）。
+## Author: wow-player
+## Version: 0.1.0
+## SavedVariables: QuickDisenchantDB
+
+Constants.lua
+Utils.lua
+Core.lua
+Data\Defaults.lua
+Config.lua
+Scanner.lua
+SecureButton.lua
+UI\Panel.lua
+UI\MinimapButton.lua
+UI\SettingsPanel.lua
+Commands.lua
+Init.lua
+Bindings.xml
