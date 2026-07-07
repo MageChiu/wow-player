@@ -1,0 +1,108 @@
+local addonName, ns = ...
+
+local Config = {}
+ns.Config = ns.Core:RegisterModule("Config", Config)
+
+local Utils = ns.Utils
+
+function Config:Init()
+  if type(RoleManagerDB) ~= "table" then
+    RoleManagerDB = {}
+  end
+  self.db = RoleManagerDB
+  Utils.DeepMergeDefaults(self.db, ns.Defaults)
+end
+
+local function resolve(db, path, createMissing)
+  local node = db
+  local lastKey
+  for segment in tostring(path):gmatch("[^%.]+") do
+    if lastKey ~= nil then
+      local child = node[lastKey]
+      if type(child) ~= "table" then
+        if not createMissing then return nil, nil end
+        child = {}
+        node[lastKey] = child
+      end
+      node = child
+    end
+    lastKey = segment
+  end
+  return node, lastKey
+end
+
+function Config:Get(path)
+  if not self.db then return nil end
+  local parent, key = resolve(self.db, path, false)
+  if not parent or key == nil then return nil end
+  return parent[key]
+end
+
+function Config:Set(path, value)
+  if not self.db then return end
+  local parent, key = resolve(self.db, path, true)
+  if not parent or key == nil then return end
+  parent[key] = value
+end
+
+function Config:GetProfile()
+  return self.db and self.db.profile
+end
+
+function Config:GetChars()
+  if not self.db.chars then self.db.chars = {} end
+  return self.db.chars
+end
+
+function Config:GetAccount()
+  if not self.db.account then self.db.account = {} end
+  return self.db.account
+end
+
+-- 货币追踪：增/删/查。存于 profile.trackedCurrencies（ID 数组）。
+function Config:IsCurrencyTracked(id)
+  local list = self:Get("profile.trackedCurrencies") or {}
+  for _, v in ipairs(list) do
+    if v == id then return true end
+  end
+  return false
+end
+
+function Config:SetCurrencyTracked(id, tracked)
+  local list = self:Get("profile.trackedCurrencies") or {}
+  local found
+  for i, v in ipairs(list) do
+    if v == id then found = i break end
+  end
+  if tracked and not found then
+    list[#list + 1] = id
+  elseif not tracked and found then
+    table.remove(list, found)
+  end
+  self:Set("profile.trackedCurrencies", list)
+end
+
+-- 角色显示：隐藏集合，键为 "名-服"。
+function Config:IsCharHidden(key)
+  local hidden = self:Get("profile.hiddenChars") or {}
+  return hidden[key] == true
+end
+
+function Config:SetCharHidden(key, hidden)
+  local map = self:Get("profile.hiddenChars") or {}
+  map[key] = hidden and true or nil
+  self:Set("profile.hiddenChars", map)
+end
+
+-- 还原用户设置；角色快照与账号数据保留。
+function Config:ResetProfile()
+  if not self.db then return end
+  self.db.profile = Utils.DeepCopy(ns.Defaults.profile)
+end
+
+-- 清空所有缓存的角色快照（/rm reset all）。
+function Config:WipeChars()
+  if not self.db then return end
+  self.db.chars = {}
+  self.db.account = Utils.DeepCopy(ns.Defaults.account)
+end

@@ -2,7 +2,7 @@
 ## Title: MyChat
 ## Notes: Native chat enhancement (enhance, not replace). MVP v0.1.
 ## Author: wow-player
-## Version: 0.1.0
+## Version: 0.1.1
 ## SavedVariables: MyChatDB
 
 Constants.lua

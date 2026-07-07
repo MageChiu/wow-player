@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bindings>
+  <!-- 绑定一个真实按键到安全按钮的点击，实现"连按"分解。每次按键 = 一次
+       硬件事件 = 分解一件，符合受保护操作只能由硬件事件触发的限制。 -->
+  <Binding name="CLICK QuickDisenchantCastButton:LeftButton" category="QuickDisenchant" header="QUICKDISENCHANT">
+  </Binding>
+</Bindings>
