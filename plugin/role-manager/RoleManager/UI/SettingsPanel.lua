@@ -14,30 +14,6 @@ function Settings:Init()
   -- 懒创建。
 end
 
--- 枚举当前角色拥有的货币（跳过分类标题行），返回 { {id, name, quantity}, ... }。
-local function enumerateCurrencies()
-  local out = {}
-  if not C_CurrencyInfo or not C_CurrencyInfo.GetCurrencyListSize then return out end
-  local size = C_CurrencyInfo.GetCurrencyListSize() or 0
-  for i = 1, size do
-    local ok, info = pcall(C_CurrencyInfo.GetCurrencyListInfo, i)
-    if ok and type(info) == "table" and not info.isHeader and info.name and info.name ~= "" then
-      local id = info.currencyID
-      -- 兜底：老接口无 currencyID 时，尝试从链接解析。
-      if not id and C_CurrencyInfo.GetCurrencyListLink then
-        local okLink, link = pcall(C_CurrencyInfo.GetCurrencyListLink, i)
-        if okLink and type(link) == "string" then
-          id = tonumber(link:match("currency:(%d+)"))
-        end
-      end
-      if id then
-        out[#out + 1] = { id = id, name = info.name, quantity = info.quantity or 0 }
-      end
-    end
-  end
-  return out
-end
-
 function Settings:_ensureFrame()
   if self.frame then return self.frame end
 
@@ -117,13 +93,13 @@ end
 
 function Settings:_refreshCurrencies()
   local f = self.frame
-  local list = enumerateCurrencies()
+  local list = Utils.EnumerateOwnedCurrencies()
   for i, cur in ipairs(list) do
     local row = acquireCheckRow(f.curContent, f.curRows, i)
     row.Text:SetText(string.format("%s  |cff888888(%d, ID %d)|r", cur.name, cur.quantity, cur.id))
     row:SetChecked(ns.Config:IsCurrencyTracked(cur.id))
-    row:SetScript("OnClick", function(self)
-      ns.Config:SetCurrencyTracked(cur.id, self:GetChecked() and true or false)
+    row:SetScript("OnClick", function(btn)
+      ns.Config:SetCurrencyTracked(cur.id, btn:GetChecked() and true or false)
       ns.Core:SafeCall(function() ns.Collector:CollectSelf() end)
       if ns.OverviewFrame and ns.OverviewFrame.frame and ns.OverviewFrame.frame:IsShown() then
         ns.OverviewFrame:Refresh()
@@ -158,8 +134,8 @@ function Settings:_refreshChars()
     local name = Utils.ShortName(entry.rec.name) or entry.key
     row.Text:SetText(string.format("%s-%s", name, entry.rec.realm or "?"))
     row:SetChecked(not ns.Config:IsCharHidden(entry.key))
-    row:SetScript("OnClick", function(self)
-      ns.Config:SetCharHidden(entry.key, not self:GetChecked())
+    row:SetScript("OnClick", function(btn)
+      ns.Config:SetCharHidden(entry.key, not btn:GetChecked())
       if ns.OverviewFrame and ns.OverviewFrame.frame and ns.OverviewFrame.frame:IsShown() then
         ns.OverviewFrame:Refresh()
       end

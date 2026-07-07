@@ -2,7 +2,7 @@
 ## Title: RoleManager
 ## Notes: 账号下多角色金币/代币/宝库/大秘境/团本进度汇总（增强而不接管）。
 ## Author: wow-player
-## Version: 0.1.2
+## Version: 0.1.3
 ## SavedVariables: RoleManagerDB
 
 Constants.lua

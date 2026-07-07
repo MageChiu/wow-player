@@ -55,13 +55,17 @@ local function printText()
       Store:VaultText(rec),
       Store:WeeklyQuestText(rec),
       Utils.AgoText(rec.updatedAt)))
-    -- 代币逐个列出。
+    -- 代币逐个列出（只列当前仍被追踪的，跳过旧缓存里的过期货币）。
     if rec.currencies and next(rec.currencies) then
       local parts = {}
-      for _, info in pairs(rec.currencies) do
-        parts[#parts + 1] = string.format("%s:%d", info.name or "?", info.quantity or 0)
+      for id, info in pairs(rec.currencies) do
+        if ns.Config:IsCurrencyTracked(id) then
+          parts[#parts + 1] = string.format("%s:%d", info.name or "?", info.quantity or 0)
+        end
       end
-      Utils.Print("    代币: " .. table.concat(parts, "  "))
+      if #parts > 0 then
+        Utils.Print("    代币: " .. table.concat(parts, "  "))
+      end
     end
   end
 end

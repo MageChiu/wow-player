@@ -5,7 +5,7 @@ ns.Constants = C
 
 C.ADDON_TITLE = "RoleManager"
 C.SLUG = "RoleManager"
-C.VERSION = "0.1.2"
+C.VERSION = "0.1.3"
 
 -- Enum.WeeklyRewardChestThresholdType（宝库活动分类）。
 -- MythicPlus=1、RankedPvP=2、Raid=3 为官方长期稳定值（见 wiki）。
@@ -42,5 +42,9 @@ C.COLLECT_EVENTS = {
   "PLAYER_LOGOUT",
 }
 
--- 数据结构版本；将来若改缓存结构，用它做迁移/清空判断。
-C.DB_VERSION = 1
+-- 数据结构版本；改缓存结构或需一次性迁移时递增。
+-- v2: 清除 v1 曾硬编码写入存档的过时默认货币（3008 神勇石 / 3028）。
+C.DB_VERSION = 2
+
+-- v1 曾作为默认写入存档的遗留货币 ID。迁移时若用户未自行改动，则清除。
+C.LEGACY_DEFAULT_CURRENCIES = { 3008, 3028 }

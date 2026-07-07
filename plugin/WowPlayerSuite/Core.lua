@@ -9,7 +9,7 @@ Core.initialized = false
 
 function Core:RegisterModule(name, module)
   if self.modules[name] then
-    error("CombatCoach: duplicate module registration: " .. tostring(name))
+    error("WowPlayerSuite: duplicate module registration: " .. tostring(name))
   end
   self.modules[name] = module
   self.initOrder[#self.initOrder + 1] = name
@@ -20,7 +20,7 @@ function Core:GetModule(name)
   return self.modules[name]
 end
 
--- pcall wrapper: a single failing callback must not break the addon.
+-- pcall 包裹：单个回调失败不拖垮整个插件。
 function Core:SafeCall(fn, ...)
   if type(fn) ~= "function" then return false end
   local ok, err = pcall(fn, ...)
@@ -30,16 +30,13 @@ function Core:SafeCall(fn, ...)
   return ok, err
 end
 
--- Fixed init order. Modules absent at load time are simply skipped.
+-- 固定初始化顺序；加载时缺席的模块直接跳过（便于分批实现）。
 local INIT_SEQUENCE = {
   "Config",
-  "Segment",
-  "CombatLog",
-  "Metrics",
-  "Analyzer",
+  "Discovery",
   "Commands",
-  "MeterFrame",
-  "ReportFrame",
+  "MainFrame",
+  "MinimapButton",
 }
 
 function Core:Init()
@@ -53,5 +50,5 @@ function Core:Init()
     end
   end
 
-  ns.Utils.Print("v" .. ns.Constants.VERSION .. " 已加载，输入 /cc 打开实时计量窗口。")
+  ns.Utils.Print("v" .. ns.Constants.VERSION .. " 已加载，输入 /wp 打开整合面板。")
 end

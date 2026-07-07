@@ -1,0 +1,18 @@
+## Interface: 120007, 120005, 120000
+## Title: WowPlayerSuite
+## Notes: 插件整合中枢：统一入口/设置聚合/插件管理（可选依赖，各插件仍可独立使用）。
+## Author: wow-player
+## Version: 0.1.0
+## SavedVariables: WowPlayerSuiteDB
+## OptionalDeps: MyChat, RoleManager, CombatCoach
+
+Constants.lua
+Utils.lua
+Core.lua
+Data\Defaults.lua
+Config.lua
+Discovery.lua
+Commands.lua
+UI\MainFrame.lua
+UI\MinimapButton.lua
+Init.lua

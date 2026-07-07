@@ -42,12 +42,15 @@ local function classColor(rec)
 end
 
 -- 拼一行角色的代币简述："名:数量  名:数量"，最多显示 N 种（超出显示 +k）。
+-- 只显示当前仍被追踪的货币——离线角色旧缓存里的过期货币（未勾选）会被跳过。
 local function currencyText(rec)
   if not rec.currencies then return "—" end
   local limit = tonumber(ns.Config:Get("profile.currencyDisplayLimit")) or 3
   local parts = {}
-  for _, info in pairs(rec.currencies) do
-    parts[#parts + 1] = string.format("%s:%d", info.name or "?", info.quantity or 0)
+  for id, info in pairs(rec.currencies) do
+    if ns.Config:IsCurrencyTracked(id) then
+      parts[#parts + 1] = string.format("%s:%d", info.name or "?", info.quantity or 0)
+    end
   end
   if #parts == 0 then return "—" end
   if #parts > limit then

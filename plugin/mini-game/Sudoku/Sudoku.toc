@@ -1,0 +1,18 @@
+## Interface: 120007, 120005, 120000
+## Title: Sudoku
+## Notes: 魔兽里闲下来玩的数独小游戏：三档难度、笔记/提示/检查、自动保存未完成局（独立小游戏）。
+## Author: wow-player
+## Version: 0.1.0
+## SavedVariables: SudokuDB
+
+Constants.lua
+Utils.lua
+Core.lua
+Data\Defaults.lua
+Config.lua
+Generator.lua
+Game.lua
+Commands.lua
+UI\Board.lua
+UI\MinimapButton.lua
+Init.lua

@@ -5,12 +5,12 @@ ns.Constants = C
 
 C.ADDON_TITLE = "CombatCoach"
 C.SLUG = "CombatCoach"
-C.VERSION = "0.1.0"
+C.VERSION = "0.2.0"
 
 -- 数据结构版本；将来改缓存结构时用它做迁移/清空判断。
 C.DB_VERSION = 1
 
--- 角色枚举。用 GetSpecializationRole / SpecProfiles 的 role 字段判定。
+-- 角色枚举。用 GetSpecializationRole 判定当前专精定位。
 C.ROLE = {
   TANK = "TANK",
   DAMAGER = "DAMAGER",
@@ -59,6 +59,12 @@ C.CLEU_KIND = {
   SPELL_PERIODIC_DAMAGE = "damage",
   RANGE_DAMAGE = "damage",
   SWING_DAMAGE = "damage",
+  -- 12.0 精简后越来越多伤害走这些"非主动施法"子事件，必须一并采集，
+  -- 否则总量会漏（如反射/近战法术护盾/分摊伤害）。
+  DAMAGE_SHIELD = "damage",
+  DAMAGE_SPLIT = "damage",
+  SPELL_BUILDING_DAMAGE = "damage",
+  RANGE_HEAL = "heal",
   SPELL_HEAL = "heal",
   SPELL_PERIODIC_HEAL = "heal",
   SPELL_ABSORBED = "absorb",
@@ -68,5 +74,9 @@ C.CLEU_KIND = {
   SPELL_AURA_APPLIED = "aura_on",
   SPELL_AURA_REFRESH = "aura_on",
   SPELL_AURA_REMOVED = "aura_off",
+  SPELL_SUMMON = "summon",
   UNIT_DIED = "death",
 }
+
+-- SWING_DAMAGE 的固定桶 spellId（自动攻击无 spellId）。6603 是"自动攻击"法术。
+C.MELEE_SPELL_ID = 6603

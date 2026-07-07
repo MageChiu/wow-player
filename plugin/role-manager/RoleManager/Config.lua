@@ -10,7 +10,29 @@ function Config:Init()
     RoleManagerDB = {}
   end
   self.db = RoleManagerDB
+  self:_migrate()
   Utils.DeepMergeDefaults(self.db, ns.Defaults)
+end
+
+-- 一次性存档迁移。按 dbVersion 逐步执行，执行后把版本号提到最新。
+function Config:_migrate()
+  local Const = ns.Constants
+  local from = tonumber(self.db.dbVersion) or 1
+
+  -- v1 → v2：清除 v1 曾硬编码写入存档的过时默认货币（如神勇石 3008）。
+  -- 逐个剔除已知的遗留 ID，不影响用户自己勾选的其他货币。
+  if from < 2 then
+    local list = self.db.profile and self.db.profile.trackedCurrencies
+    if type(list) == "table" then
+      local legacy = {}
+      for _, id in ipairs(Const.LEGACY_DEFAULT_CURRENCIES or {}) do legacy[id] = true end
+      for i = #list, 1, -1 do
+        if legacy[list[i]] then table.remove(list, i) end
+      end
+    end
+  end
+
+  self.db.dbVersion = Const.DB_VERSION or from
 end
 
 local function resolve(db, path, createMissing)

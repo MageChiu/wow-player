@@ -31,133 +31,83 @@
 
 ```
 Interface/AddOns/
-├── WowPlayerSuite/     ← 新增。中枢：注册表 + 统一窗口 + /wp + 小地图按钮 + 启停
-├── MyChat/             ← 现有，加一段"存在 Hub 就上报自己"的注册代码
+├── WowPlayerSuite/     ← 新增。中枢：发现层 + 统一窗口 + /wp + 小地图按钮 + 启停
+├── MyChat/             ← 现有，零改动（由 Hub 主动发现）
 ├── RoleManager/        ← 同上
-└── CombatCoach/        ← 同上（目前仅 toc + Constants，接入代码随实现一并加）
+├── CombatCoach/        ← 同上（目前仅 toc + Constants，功能开发中）
+└── QuickDisenchant/    ← 同上
 ```
 
-- 子插件与 Hub **谁先加载都不能出错**。靠一个不依赖加载顺序的全局注册表（下节）解决。
-- `.toc` 里 Hub 对子插件用 `## OptionalDeps`，子插件对 Hub **不写任何依赖**（保持独立可发）。
+- **Hub 主动发现，插件零改动**：Hub 靠一张内置适配表 + WoW 公共接口（`C_AddOns`、`SlashCmdList`）发现并驱动插件，被接入的插件**无需添加任何代码**。这样才能纳入"不知道 Hub 存在"的第三方/社区插件。
+- **可选自愿注册**：愿意深度集成的插件可选择向全局 API 上报更丰富能力，但非必需。
+- 谁先加载都不出错：晚于 Hub 加载的插件由 `ADDON_LOADED` 监听补发现；自愿注册用握手对象兜底加载顺序。
+
+> 接入契约、新增插件步骤、打包机制的**完整规范**见 [插件接入与打包规范.md](插件接入与打包规范.md)。本节及以下只描述设计要点。
 
 ---
 
-## 3. 注册协议
+## 3. 发现与适配（Hub 侧）
 
-### 3.1 全局握手对象
+### 3.1 内置适配表 KNOWN
 
-Hub 与子插件之间只通过一个全局表通信。为避免加载顺序问题，**任何一方先创建它都可以**：
-
-```lua
--- 约定的全局命名空间。Hub 与子插件都用这一段"若无则建"的守卫。
-WowPlayerSuiteAPI = WowPlayerSuiteAPI or {
-  _pending = {},          -- Hub 尚未加载时，子插件先把注册信息塞这里
-  _registered = {},       -- 已被 Hub 接收的插件描述符（title -> descriptor）
-}
-```
-
-- **子插件调用** `WowPlayerSuiteAPI:Register(descriptor)`：把自己的描述符登记进去。
-- **Hub 加载后** 提供真正的 `Register` 实现，并把 `_pending` 里已有的补登记。
-- 因此子插件**不需要判断 Hub 在不在**，只管调 `Register`；Hub 在就即时接收，不在就进 `_pending` 等 Hub 来收。
-
-> 也可选更简单的写法：子插件用 `if WowPlayerSuite then WowPlayerSuite:Register(...) end` 直接判断（见 4.1）。两种都可，握手对象方式对加载顺序更鲁棒。**本设计采用握手对象方式作为主方案。**
-
-### 3.2 插件描述符（descriptor）
-
-子插件注册时提交的表。所有字段除 `title` 外均可选——Hub 对缺失字段降级处理（对应能力不显示即可）。
+Hub 运行时"认识哪些插件"由 [WowPlayerSuite/Discovery.lua](WowPlayerSuite/Discovery.lua) 的 `KNOWN` 表决定——这是**运行时管理的单一源**。每条记录一个插件的接入知识：
 
 ```lua
-{
-  title       = "MyChat",              -- [必填] 显示名，也用作唯一键
-  version     = "0.1.1",               -- [可选] 展示用，取自各自 Constants.VERSION
-  slashCmd    = "/mychat",             -- [可选] 展示"独立命令"提示
-
-  -- [可选] 打开该插件自己的设置面板。Hub 侧栏点击时调用。
-  -- 各插件内部差异（MyChat 用 Open()、RoleManager 用 Toggle()）被这个闭包吸收。
-  openSettings = function() ... end,
-
-  -- [可选] 小地图按钮受控能力。仅有小地图按钮的插件提供。
-  -- show=false 时隐藏自己的按钮（写入插件自己的配置并即时生效）。
-  setMinimapShown = function(show) ... end,
-  getMinimapShown = function() return true/false end,
-
-  -- [可选] 配置导入导出（A 档能力，用于备份/迁移）。
-  -- exportConfig 返回一个可序列化的 table（插件自己的 profile 快照）。
-  -- importConfig 接收同结构 table，写回插件自己的配置。
-  exportConfig = function() return table end,
-  importConfig = function(tbl) ... end,
-}
+{ addon = "MyChat", slash = "MYCHAT", settings = "config", displaySlash = "/mychat", bundled = true }
 ```
 
-### 3.3 Hub 侧接收契约
+| 字段 | 含义 |
+|---|---|
+| `addon` | 插件文件夹名（= toc 名），用于 `C_AddOns` 查询 |
+| `slash` | `SlashCmdList` 里的键名（大写），用于驱动其命令 |
+| `settings` | 打开设置面板的命令参数（约定 `config`） |
+| `displaySlash` | 概览页展示的命令 |
+| `bundled` | 是否为整包成员（详见接入规范第 1 节） |
+
+### 3.2 发现流程
+
+1. **枚举 KNOWN**：对每条用 `C_AddOns.IsAddOnLoaded(addon)` 判断是否已加载。
+2. **读元数据**：用 `C_AddOns.GetAddOnMetadata(addon, "Title"/"Version")` 从 toc 实时取标题与版本（**不维护版本清单**，避免脱节）。
+3. **构造 openSettings**：若 `SlashCmdList[slash]` 存在，用 `SlashCmdList[slash]("config")` 包一个打开设置的闭包。
+4. **补发现**：监听 `ADDON_LOADED`，晚于 Hub 加载的插件加载后触发列表刷新。
+
+关键：**全程只用 WoW 公共接口，不触碰插件的私有 `ns`**（插件的 `ns` 是局部 upvalue，外部本就访问不到）。因此插件零改动即可被发现。
+
+### 3.3 可选：自愿注册（深度集成）
+
+保留一个全局握手对象 `WowPlayerSuiteAPI`，供愿意深度集成的插件**自愿**上报更丰富能力（如小地图幂等控制）。Hub 加载时安装真正的 `Register`，并排空插件在 Hub 之前塞入的 `_pending`：
 
 ```lua
-function WowPlayerSuite:Register(descriptor)
-  -- 1. 校验 title 非空、未重复
-  -- 2. 存入 _registered[title]
-  -- 3. 若设置窗口已打开，刷新侧栏
-  -- 4. 全程 pcall 包裹，单插件描述符异常不影响其他插件
-end
+WowPlayerSuiteAPI = WowPlayerSuiteAPI or { _pending = {} }
+-- 插件侧：有 Register 就调，否则进 _pending 等 Hub 来收
 ```
 
-- **调用方向**：永远是子插件 → Hub 单向登记；Hub → 子插件只通过描述符里的回调。子插件从不反向依赖 Hub 的内部结构。
-- **能力探测**：Hub 渲染某项 UI 前先判断对应回调是否存在（如无 `setMinimapShown` 就不显示"小地图按钮"开关）。
+自愿注册的描述符会**合并/覆盖**自动发现的结果（深度集成优先）。字段：`title`(必填)、`version`、`slashCmd`、`openSettings`、`setMinimapShown`、`getMinimapShown`（均可选）。
+
+> **这不是接入的必要条件。** 绝大多数插件（含社区插件）走 3.1/3.2 的自动发现即可，无需任何代码。
 
 ---
 
-## 4. 上报代码形态（子插件侧）
+## 4. 为什么这样设计（取舍记录）
 
-### 4.1 放置位置
+### 4.1 为什么不让插件加 bridge
 
-每个子插件在 **Init 序列的末尾**（所有模块初始化完成、`ns.Config` 等已就绪后）加一段上报。以 MyChat 为例，挂在其 [Core:Init](chat/MyChat/Core.lua#L59-L71) 尾部或新增一个 `SuiteBridge` 模块（更符合现有"每功能一模块"的组织方式，推荐后者）。
+早期方案曾让每个插件加一个 `SuiteBridge.lua` 主动上报。**已废弃**，因为：整合包的价值恰恰在于能管理"不知道 Hub 存在"的插件（含第三方/社区插件）；若接入前提是每个插件都加 bridge，社区插件根本无法纳入。故改为 **Hub 主动适配**——适配的责任在可选的那一方（Hub），而不是让插件迁就 Hub。
 
-### 4.2 上报代码（MyChat 示例）
+### 4.2 独立/单独安装零影响
 
-新增 `MyChat/SuiteBridge.lua`，并加入 `.toc` 的 Init 序列尾部：
+- 插件源码完全不含 Hub 相关代码，单独安装/发布与今天完全一致。
+- 没装 Hub 时，自愿注册的握手对象（若插件用了）只是个空壳全局表，无副作用。
 
-```lua
-local addonName, ns = ...
+### 4.3 小地图按钮"统一收纳"如何落地
 
-local Bridge = {}
-ns.SuiteBridge = ns.Core:RegisterModule("SuiteBridge", Bridge)
+小地图按钮的幂等显隐属于"深度集成"能力，走 3.3 的自愿注册：
 
-function Bridge:Init()
-  -- 握手对象若无则建：不依赖 Hub 是否已加载。
-  WowPlayerSuiteAPI = WowPlayerSuiteAPI or { _pending = {}, _registered = {} }
+- 想被统一收纳的插件，通过自愿注册提供 `setMinimapShown(show)`（内部写自己的配置并即时显隐，真相源仍在插件自己的 DB）。
+- Hub 提供"只显示 Hub 总按钮、收起其余"的开关，遍历有 `setMinimapShown` 的插件调用之。
+- 未提供该能力的插件（如仅自动发现的社区插件），Hub 不显示其收纳开关，其按钮各显各的。逻辑全在 Hub 侧。
 
-  local descriptor = {
-    title    = ns.Constants.ADDON_TITLE,          -- "MyChat"
-    version  = ns.Constants.VERSION,              -- "0.1.1"
-    slashCmd = "/mychat",
-
-    openSettings = function()
-      -- 吸收 MyChat 自己的差异：SettingsPanel:Open() 不支持时返回 false。
-      local panel = ns.SettingsPanel
-      if panel and panel.Open then return panel:Open() end
-    end,
-    -- MyChat 无小地图按钮，故不提供 setMinimapShown。
-  }
-
-  -- 有真正的 Register（Hub 已加载）就直接登记；否则进 _pending 等 Hub 来收。
-  if WowPlayerSuiteAPI.Register then
-    WowPlayerSuiteAPI:Register(descriptor)
-  else
-    WowPlayerSuiteAPI._pending[#WowPlayerSuiteAPI._pending + 1] = descriptor
-  end
-end
-```
-
-### 4.3 关键性质（为什么"零影响"）
-
-- **没装 Hub**：`WowPlayerSuiteAPI` 只是个装了描述符的空壳表，没有任何东西来消费它。MyChat 其余模块照常读写 `MyChatDB`，行为和今天完全一致。
-- **这段代码本身无副作用**：只做"登记描述符"，不改任何配置、不动任何 UI。
-- **对 RoleManager**：同形，但 `openSettings` 内部改调 `ns.SettingsPanel:Toggle()`，并额外提供 `setMinimapShown`/`getMinimapShown`（包住其现有的 [MinimapButton:Toggle](role-manager/RoleManager/UI/MinimapButton.lua#L119-L124)，做成幂等的 SetShown）。
-
-### 4.4 小地图按钮"统一收纳"如何落地
-
-- RoleManager 提供 `setMinimapShown(false)` → 内部把 `profile.showMinimapButton` 设为 false 并隐藏按钮（复用已有逻辑）。
-- Hub 提供"只显示 Hub 一个总按钮，收起子插件按钮"的开关：勾选时 Hub 遍历已注册插件，对有 `setMinimapShown` 的调用 `setMinimapShown(false)`。
-- 逻辑全在 Hub 侧；插件只被动提供开关。没装 Hub 时该逻辑不存在，插件按钮各显各的。
+> 注：本仓库插件目前**未**接入此深度能力（源码保持零改动）。小地图统一收纳作为后续批次，需与"是否为某些整包成员开启自愿注册"一并决定。
 
 ---
 
@@ -168,6 +118,8 @@ end
 - `/wp settings` 或直接 `/wp`：主窗口。
 - 小地图按钮：左键开窗口，tooltip 列出已接入插件及版本。
 - 各子插件的 `/mychat`、`/rm` 等**保留不变**，作为独立入口。
+
+**小地图按钮定位约束**：按钮必须落在小地图圆环的**外侧**，不能压在地图内部（会遮挡地图内容）。沿用 RoleManager 现有做法（[MinimapButton.lua](role-manager/RoleManager/UI/MinimapButton.lua#L12-L18)）：半径取 `小地图半径 + 外扩`（`mw/2 + 8`），按角度绕圆环外缘摆放，并支持拖动沿外缘移动、记住角度。
 
 ### 5.2 窗口布局
 
@@ -208,40 +160,48 @@ end
 - **无同步副作用**：这是一次性"推"（用户明确按下），不留副本、不持续绑定，故不存在真相源冲突问题。
 
 ### 5.4 渲染与容错
-- 侧栏与内容区由 `_registered` 动态生成；插件"后注册"时刷新。
-- 所有对 `openSettings`/`exportConfig` 等回调的调用用 `pcall` 包裹，异常插件在列表里标红但不影响其他项。
+- 侧栏与内容区由 `Discovery:GetOrdered()` 的结果动态生成；插件被"补发现"（后加载）或自愿注册时刷新。
+- 所有对 `openSettings` 等回调的调用用 `pcall` 包裹，异常插件在列表里标红但不影响其他项。
 - 面板本身在不支持的客户端要能降级（参考 MyChat `SettingsPanel:Open()` 返回 false 的处理）。
 
 ---
 
 ## 6. 打包与版本
 
-- **各插件保留自己的 [package.sh](chat/package.sh)**：仍可单发 `MyChat-x.y.z.zip` 等，独立发布不受影响。
-- **新增总打包脚本** `plugin/package-suite.sh`：产出 `WowPlayerSuite-<套件版本>.zip`，解压后为并列的 4 个文件夹（Hub + 三插件），一次装齐。
-- **套件版本号**：独立于各插件版本，记录"本次整包内各插件分别是哪个版本"（可在 Hub 的 Constants 里维护一张清单，供概览页展示）。
+> 打包机制的**完整规范**（新增插件步骤、两处清单交叉核对等）见 [插件接入与打包规范.md](插件接入与打包规范.md)，此处只列设计要点。
+
+- **各插件保留自己的 `package.sh`**：仍可单发 `MyChat-x.y.z.zip` 等，独立发布不受影响。
+- **总打包脚本** [package-suite.sh](package-suite.sh)：产出 `WowPlayerSuite-Bundle-<套件版本>.zip`，解压后为并列的多个文件夹（Hub + 各整包成员），一次拖进 `AddOns/` 装齐。脚本会**交叉核对** `PLUGINS` 列表与 `Discovery.lua` 里 `bundled=true` 的条目是否一致，防止两处清单不同步。
+- **套件版本号** `SUITE_VERSION` 定义在总打包脚本顶部，独立于各插件版本。发布整合包时递增这一处。各插件版本由 Hub 从各自 toc 实时读取，**不再维护单独的版本清单**。
 - **升级方式**：重新下载整包覆盖。可选：Hub 内配置一个"已知最新版本号"，落后时概览页提示（不自动下载）。
 - 遵循现有规范：`.toc` 的 `## Version` 与 `Constants.lua` 的 `C.VERSION` 必须一致（打包脚本校验），打包 ≠ 涨号。
 
 ---
 
-## 7. 实现范围与阶段建议（待确认）
+## 7. 实现范围与阶段建议
 
-按依赖与收益排序，建议分批，每批可独立验证：
+按依赖与收益排序，分批实现，每批可独立验证：
 
-1. **批次一（最小可用）**：Hub 骨架 + 握手注册表 + `/wp` + 概览页 + 三插件各加 `SuiteBridge` 上报 + 统一"打开设置"。→ 验证"注册协议 + 统一入口"跑通。
-2. **批次二**：小地图按钮统一（Hub 总按钮 + 收纳子插件按钮）。
-3. **批次三**：插件管理页（启停 + reload 提示）。
-4. **批次四**：总打包脚本 + 套件版本清单；可选版本落后提示。
-5. **批次五（可选）**：备份/迁移页（导入导出）。
+1. **批次一（已完成）**：Hub 骨架 + 发现层 + `/wp` + 概览页 + 统一"打开设置"。四个插件零改动被发现。
+2. **批次一补充（已完成）**：总打包脚本 `package-suite.sh` + 两处清单交叉核对 + 接入与打包规范文档；纳入 QuickDisenchant。
+3. **批次二**：小地图按钮统一收纳（需为参与收纳的插件开启 3.3 自愿注册）。
+4. **批次三**：插件管理页（启停 + reload 提示）。
+5. **批次四（可选）**：备份/迁移页（导入导出，走自愿注册的 export/import 能力）。
 
 > 每批遵循规范：设计确认 → 实现 → 打包 → 用户实测通过才算完成。
 
 ---
 
-## 8. 待用户确认的点
+## 8. 决策记录与待定项
 
-1. Hub 命名 **WowPlayerSuite** / 命令 `/wp` —— 是否确认。
-2. 注册方式采用 **握手对象 `WowPlayerSuiteAPI`**（对加载顺序更鲁棒），还是简单的 `if WowPlayerSuite then` 直接判断。
-3. 上报代码放在 **独立 `SuiteBridge.lua` 模块**（推荐）还是塞进各插件 Core:Init 尾部。
-4. 批次顺序是否认可，第一批先做到哪。
-5. 备份/迁移（A 档）是否纳入首期，还是留到最后按需再做。
+**已决策：**
+1. Hub 命名 **WowPlayerSuite**，命令 `/wp`。
+2. 接入方式 **Hub 主动发现（KNOWN 适配表）**，插件零改动；废弃早期的 SuiteBridge 上报方案（原因见 §4.1）。
+3. 自愿注册 `WowPlayerSuiteAPI` 作为**可选**深度集成通道保留，非接入必需。
+4. 整合包发布采用**整包 zip + 套件版本号**；升级为手动覆盖。
+5. 整包成员：MyChat / RoleManager / CombatCoach / QuickDisenchant（见接入规范第 6 节）。
+
+**待定项：**
+1. 批次二（小地图统一收纳）是否要为部分整包成员开启自愿注册——这会首次触碰这些插件源码，需单独确认。
+2. 批次三（插件启停管理）的交互细节（reload 提示形态）。
+3. 备份/迁移（导入导出）是否要做、走自愿注册还是别的方式。
