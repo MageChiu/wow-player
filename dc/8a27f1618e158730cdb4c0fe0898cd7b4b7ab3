@@ -1,0 +1,216 @@
+plugin/enhancement/CombatCoach/Store.lua
+  s_162e0493ca0f8a::t_c6c7af0d804261 1-68
+plugin/role-manager/RoleManager/Init.lua
+  s_22679dc7fb452c::t_6d0d5ff41e74c1 1-13
+plugin/role-manager/RoleManager/UI/MinimapButton.lua
+  s_22679dc7fb452c::t_94fa2f514cfb9d 1-2,8-13,17-19,26-59,61-64,66-106,108-118,120-124
+  s_22679dc7fb452c::t_b8215fb88f2b92 107
+  s_22679dc7fb452c::t_c7dbd65d2ad56b 14-16
+  s_22679dc7fb452c::t_4bb1a0ef94af0f 20-25
+  s_22679dc7fb452c::t_437e0c1bf2f844 3-7,60,65,119
+plugin/trade/quick-disenchant/QuickDisenchant/Bindings.xml
+  s_41a3e4e30dc4c4::t_0e0c207989a0b7 1-7
+plugin/enhancement/CombatCoach/Config.lua
+  s_162e0493ca0f8a::t_07b0ef6a25f185 1-68
+plugin/role-manager/package.sh
+  s_22679dc7fb452c::t_f04fbbccba1e8f 1-128
+plugin/chat/MyChat/MyChat.toc
+  s_ca044d1532b8b0::t_b80ab4f8d7f3c6 5
+plugin/enhancement/CombatCoach/README.md
+  s_162e0493ca0f8a::t_540feefe3fa430 1-216 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a4c9355c7feb1b2fd5590c7","tool_type":"agent","tool_id":"Write","line_ranges":[{"Range":[1,216]}]}]}
+plugin/trade/quick-disenchant/QuickDisenchant/UI/SettingsPanel.lua
+  s_41a3e4e30dc4c4::t_83a551013a4bca 1-133
+plugin/trade/quick-disenchant/QuickDisenchant/Config.lua
+  s_41a3e4e30dc4c4::t_9715cc77a0bbac 1-79
+plugin/enhancement/CombatCoach/Constants.lua
+  s_162e0493ca0f8a::t_4046d66936c4c7 1-72
+plugin/chat/MyChat/Constants.lua
+  s_ca044d1532b8b0::t_e3fe722ea1aeb4 7
+plugin/enhancement/CombatCoach/Utils.lua
+  s_162e0493ca0f8a::t_03eb94cab191f3 1-77
+plugin/enhancement/CombatCoach/CombatLog.lua
+  s_162e0493ca0f8a::t_d8b0e42bd438d7 1-178,182-188
+  s_162e0493ca0f8a::t_e3016bf4a4b9df 179-181
+plugin/enhancement/CombatCoach/Segment.lua
+  s_162e0493ca0f8a::t_f37379f74d7972 1-182
+plugin/trade/quick-disenchant/QuickDisenchant/UI/MinimapButton.lua
+  s_41a3e4e30dc4c4::t_9d90ba01b910d1 1-89
+plugin/role-manager/RoleManager/Core.lua
+  s_22679dc7fb452c::t_6a330f63519720 1-40,42-56
+  s_22679dc7fb452c::t_683b33beb709e2 41
+plugin/chat/开发协作规范.md
+  s_22679dc7fb452c::t_e38338767362bf 54-60,63-64
+plugin/trade/quick-disenchant/QuickDisenchant/Utils.lua
+  s_41a3e4e30dc4c4::t_02d0ee242fce7a 1-55
+plugin/trade/quick-disenchant/QuickDisenchant/Init.lua
+  s_41a3e4e30dc4c4::t_64cae9ffd2bfa6 1-13
+plugin/enhancement/CombatCoach/Analyzer.lua
+  s_162e0493ca0f8a::t_0d5996999f85f2 1-192
+plugin/enhancement/CombatCoach/UI/ReportFrame.lua
+  s_162e0493ca0f8a::t_e56f21fd8438d4 1-175
+plugin/role-manager/RoleManager/Store.lua
+  s_22679dc7fb452c::t_ab9f6b8ce612a0 1-14,16-21,24-84,86,88-95,97-98,100-103,116-117,120,122,124-142
+  s_22679dc7fb452c::t_f28597fe74908f 85,96
+  s_22679dc7fb452c::t_9661bd069ad885 118-119,121,123
+  s_22679dc7fb452c::t_d605350c2bd72a 15,22-23
+  s_22679dc7fb452c::t_26b3a3e326f88c 99,104-115
+  s_22679dc7fb452c::t_a021d04578380b 87
+plugin/enhancement/CombatCoach/Init.lua
+  s_162e0493ca0f8a::t_10cb261b01d51d 1-13
+plugin/trade/quick-disenchant/QuickDisenchant/Commands.lua
+  s_41a3e4e30dc4c4::t_9cc1d35c35c95d 1-82
+plugin/trade/quick-disenchant/QuickDisenchant/UI/Panel.lua
+  s_41a3e4e30dc4c4::t_d34b69d951afa3 1-246
+plugin/role-manager/RoleManager/Utils.lua
+  s_22679dc7fb452c::t_5219b13c03a38d 41-42
+  s_22679dc7fb452c::t_d1f2e4445b6f0e 29-34,36-40
+  s_22679dc7fb452c::t_b389cbc234e8c1 1-28,35,43-105
+plugin/role-manager/RoleManager/UI/SettingsPanel.lua
+  s_22679dc7fb452c::t_320cce054e410d 1-27,30-185
+  s_22679dc7fb452c::t_ecdcbaa8e7978c 28-29
+plugin/role-manager/RoleManager/Commands.lua
+  s_22679dc7fb452c::t_442e3d05a0e73f 133-134
+  s_22679dc7fb452c::t_3d9bd974059546 19,23
+  s_22679dc7fb452c::t_0c144d2031e40e 49,53
+  s_22679dc7fb452c::t_f1845b67a0c351 1-18,20-22,24-48,50-52,54-132,135-165
+plugin/enhancement/package.sh
+  s_162e0493ca0f8a::t_2ef1f2c08bc037 1-128
+plugin/chat/MyChat/Channels.lua
+  s_ca044d1532b8b0::t_bc98cd9874bdde 35-38
+plugin/enhancement/CombatCoach/Commands.lua
+  s_162e0493ca0f8a::t_56011d6214bb5d 1-100
+plugin/role-manager/RoleManager/Constants.lua
+  s_22679dc7fb452c::t_1cc4b684f9bf51 1-7,9,14-46
+  s_22679dc7fb452c::t_7aac222c0f5bab 8
+  s_22679dc7fb452c::t_b838790ac0d393 10-13
+plugin/chat/README.md
+  s_ca044d1532b8b0::t_5f0218643604ab 160
+  s_ca044d1532b8b0::t_67ff56c3cd5f42 133
+plugin/trade/quick-disenchant/package.sh
+  s_41a3e4e30dc4c4::t_535cab6e77233a 1-128
+plugin/trade/quick-disenchant/QuickDisenchant/Scanner.lua
+  s_41a3e4e30dc4c4::t_1b877ae3a0e566 1-109
+plugin/enhancement/CombatCoach/Metrics.lua
+  s_162e0493ca0f8a::t_26c34303dc9af2 1-136
+plugin/enhancement/CombatCoach/Data/SpecProfiles.lua
+  s_162e0493ca0f8a::t_11ff05bec95a2d 1-117
+plugin/enhancement/CombatCoach/Core.lua
+  s_162e0493ca0f8a::t_ac07ba391922a2 1-57
+plugin/enhancement/CombatCoach/Data/Defaults.lua
+  s_162e0493ca0f8a::t_45c96812dc2f1d 1-54
+plugin/trade/quick-disenchant/QuickDisenchant/Constants.lua
+  s_41a3e4e30dc4c4::t_4dbe827679da2b 54-57
+plugin/role-manager/RoleManager/Data/Defaults.lua
+  s_22679dc7fb452c::t_93167e2b13f19e 14-16,18-20,24-26
+  s_22679dc7fb452c::t_1934895f416968 1-13,17,21-23,27-58
+plugin/role-manager/RoleManager/UI/OverviewFrame.lua
+  s_22679dc7fb452c::t_e4f63b83eeb6de 1-17,20,30-32,34-43,45-46,48-52,58-95,97-102,106-119,121-131,140-145,147-156,158,161-186,197-229
+  s_22679dc7fb452c::t_05f1131d31c72d 18-19,21-29,33,44,47,53-57
+  s_22679dc7fb452c::t_647aaec7ca5739 96,103-105,120,132-139,146,157,159-160
+  s_22679dc7fb452c::t_2b69c7531bff1b 187
+  s_22679dc7fb452c::t_64cf4f623813a3 188-196
+plugin/trade/quick-disenchant/QuickDisenchant/Data/Defaults.lua
+  s_41a3e4e30dc4c4::t_650be90b6a8751 1-34
+plugin/role-manager/RoleManager/Config.lua
+  s_22679dc7fb452c::t_d84d24d967b8cd 62-96
+  s_22679dc7fb452c::t_2b329c6d228bca 1-61,97-108
+plugin/trade/quick-disenchant/QuickDisenchant/Core.lua
+  s_41a3e4e30dc4c4::t_5c7772a53a3a4e 1-56
+plugin/trade/quick-disenchant/QuickDisenchant/SecureButton.lua
+  s_41a3e4e30dc4c4::t_848f3a1ba40aad 48-49
+  s_41a3e4e30dc4c4::t_b0fde21d01f1c4 1-47,50-86,89-156
+  s_41a3e4e30dc4c4::t_93eda31f36125c 87-88
+plugin/role-manager/RoleManager/Collector.lua
+  s_22679dc7fb452c::t_fc10fe10ad3b3b 1-92,95-97,110-111,114,128-180
+  s_22679dc7fb452c::t_9e03f5479da1fc 93-94,98-109,112-113,115-127
+plugin/role-manager/RoleManager/RoleManager.toc
+  s_22679dc7fb452c::t_d835f7a3996bc3 18
+  s_22679dc7fb452c::t_d9704f9cc38043 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "dc8a27f1618e158730cdb4c0fe0898cd7b4b7ab3",
+  "prompts": {},
+  "sessions": {
+    "s_162e0493ca0f8a": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4c74bfc7feb1b2fd558eae",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": null
+    },
+    "s_22679dc7fb452c": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4b78e5c7feb1b2fd558b80",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": null
+    },
+    "s_41a3e4e30dc4c4": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4c73fac7feb1b2fd558e9d",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": null
+    },
+    "s_ca044d1532b8b0": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a4633dd092199e1bef8e1bf",
+        "model": "openrouter-3o__max"
+      },
+      "human_author": null
+    }
+  },
+  "attestation_metadata": {
+    "plugin/enhancement/CombatCoach/README.md": [
+      {
+        "hash": "s_162e0493ca0f8a::t_540feefe3fa430",
+        "line_ranges": [
+          {
+            "Range": [
+              1,
+              216
+            ]
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a4c9355c7feb1b2fd5590c7",
+            "tool_type": "agent",
+            "tool_id": "Write",
+            "line_ranges": [
+              {
+                "Range": [
+                  1,
+                  216
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "remote_transcripts": {
+    "s_162e0493ca0f8a": {
+      "tool": "trae",
+      "conversation_id": "6a4c74bfc7feb1b2fd558eae",
+      "session_id": "6a4c74bfc7feb1b2fd558eae",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_162e0493ca0f8a::t_540feefe3fa430": {
+      "tool": "trae",
+      "conversation_id": "6a4c74bfc7feb1b2fd558eae",
+      "session_id": "6a4c74bfc7feb1b2fd558eae",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    }
+  }
+}
