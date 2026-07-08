@@ -22,18 +22,18 @@ local function roleLabel(role)
   })[role] or "未知"
 end
 
--- 顶部主指标一行：按角色选最相关的核心数值。
+-- 顶部主指标一行：按角色选最相关的核心数值。只用一定存在的可观测指标。
 local function headlineText(report)
   local m = report.metrics or {}
   if report.role == Const.ROLE.HEALER then
     return string.format("HPS %s   过量 %s   %s",
       Utils.Short(m.hps or 0), Utils.Pct(m.overhealPct or 0), roleLabel(report.role))
   elseif report.role == Const.ROLE.TANK then
-    return string.format("DTPS %s   减伤 %s   %s",
-      Utils.Short(m.dtps or 0), Utils.Pct(m.mitigationPct or 0), roleLabel(report.role))
+    return string.format("DTPS %s   DPS %s   %s",
+      Utils.Short(m.dtps or 0), Utils.Short(m.dps or 0), roleLabel(report.role))
   else
-    return string.format("DPS %s   活跃 %s   %s",
-      Utils.Short(m.dps or 0), Utils.Pct(m.activeTimePct or 0), roleLabel(report.role))
+    return string.format("DPS %s   %s",
+      Utils.Short(m.dps or 0), roleLabel(report.role))
   end
 end
 
@@ -61,7 +61,7 @@ function Report:_ensureFrame()
 
   local title = f:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
   title:SetPoint("TOPLEFT", 12, -10)
-  title:SetText(Const.ADDON_TITLE .. " 战斗复盘")
+  title:SetText(Const.ADDON_TITLE .. " 分析")
   f.title = title
 
   local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
@@ -98,7 +98,7 @@ function Report:_ensureFrame()
 
   local hint = f:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
   hint:SetPoint("BOTTOMLEFT", 12, 12)
-  hint:SetText("仅分析日志范围内的自己，非团队排名。/cc history 看历史。")
+  hint:SetText("仅分析日志范围内的自己，非团队排名。")
 
   self.frame = f
   return f
@@ -139,9 +139,16 @@ function Report:Render(report)
 
   local sugs = report.suggestions or {}
   local y = 0
-  if #sugs == 0 then
+
+  -- 零采集自检优先提示：避免用户把"采集异常"误当成"分析说我啥也没做"。
+  if report.zeroCollected then
     local row = acquireRow(f.content, f.rows, 1)
-    row:SetText("|cff40ff40这一场没有发现明显问题，保持！|r")
+    row:SetText("|cffff5555本段未采集到你的任何伤害/治疗，可能异常。输入 /cc debug 查看。|r")
+    row:Show()
+    y = 1
+  elseif #sugs == 0 then
+    local row = acquireRow(f.content, f.rows, 1)
+    row:SetText("|cff40ff40没有发现明显问题，保持！|r")
     row:Show()
     y = 1
   else
@@ -154,22 +161,38 @@ function Report:Render(report)
       y = i
     end
   end
+
+  -- 本段实测占比：治疗看治疗构成，其余看输出构成。名字与数值都来自实战日志，
+  -- 永远是当前赛季实时数据，也是"如实呈现"的核心。
+  local m = report.metrics or {}
+  local top = (report.role == Const.ROLE.HEALER) and m.topHeal or m.topDamage
+  local topLabel = (report.role == Const.ROLE.HEALER) and "本段治疗占比" or "本段输出占比"
+  if type(top) == "table" and #top > 0 then
+    y = y + 1
+    local head = acquireRow(f.content, f.rows, y)
+    head:SetText("|cffffd100" .. topLabel .. "|r")
+    head:Show()
+    for _, e in ipairs(top) do
+      y = y + 1
+      local row = acquireRow(f.content, f.rows, y)
+      row:SetText(string.format("%s  |cff40ff40%s|r  |cff808080(%s)|r",
+        e.name or ("法术#" .. tostring(e.spellId)),
+        Utils.Pct(e.pct or 0, 1),
+        Utils.Short(e.amount or 0)))
+      row:Show()
+    end
+  end
+
   for i = y + 1, #f.rows do f.rows[i]:Hide() end
   f.content:SetHeight(math.max(10, y * (LINE_H * 2 + 4)))
 end
 
--- 战斗结束自动调用：渲染并显示。
+-- 由计量窗口的「分析」按钮调用：渲染指定段的分析并显示。
 function Report:ShowReport(report)
   self:Render(report)
   self.frame:Show()
 end
 
-function Report:Toggle()
-  local f = self:_ensureFrame()
-  if f:IsShown() then
-    f:Hide()
-  else
-    self:Render(ns.Store:GetLast())
-    f:Show()
-  end
+function Report:Hide()
+  if self.frame then self.frame:Hide() end
 end

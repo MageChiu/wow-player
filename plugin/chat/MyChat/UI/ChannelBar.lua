@@ -146,7 +146,16 @@ function ChannelBar:Init()
   pcall(function() watcher:RegisterEvent("CLUB_STREAMS_LOADED") end)
   pcall(function() watcher:RegisterEvent("CLUB_ADDED") end)
   pcall(function() watcher:RegisterEvent("INITIAL_CLUBS_LOADED") end)
-  watcher:SetScript("OnEvent", function()
+  -- Leaving combat: run any rebuild that was deferred during lockdown.
+  watcher:RegisterEvent("PLAYER_REGEN_ENABLED")
+  watcher:SetScript("OnEvent", function(_, event)
+    if event == "PLAYER_REGEN_ENABLED" then
+      if ChannelBar.rebuildPending then
+        ChannelBar.rebuildPending = false
+        ns.Core:SafeCall(function() ChannelBar:Rebuild() end)
+      end
+      return
+    end
     ns.Core:SafeCall(function() ChannelBar:Rebuild() end)
   end)
   self.watcher = watcher
@@ -240,6 +249,19 @@ end
 function ChannelBar:Rebuild()
   local f = self.frame
   if not f then return end
+
+  -- Combat / instance lockdown safety: rebuilding reads channel data
+  -- (GetChannelList / ChatFrame_ResolveChannelName) and re-creates button
+  -- frames. In M+/raid/battleground boss contexts, channel messages carry
+  -- Secret Values and reading them here throws, aborting the rebuild and
+  -- making the whole bar vanish. So in lockdown we DO NOT rebuild — we keep
+  -- the existing buttons untouched (they stay clickable) and defer the
+  -- refresh until PLAYER_REGEN_ENABLED. This mirrors how mature chat bars
+  -- (LNuiChat, ChatEnhanced, MtjChatBar) degrade safely in combat.
+  if InCombatLockdown() then
+    self.rebuildPending = true
+    return
+  end
 
   -- Release old buttons.
   if self.buttons then

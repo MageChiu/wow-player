@@ -5,58 +5,97 @@ ns.CombatLog = ns.Core:RegisterModule("CombatLog", CombatLog)
 
 local Const = ns.Constants
 local CLEU_KIND = Const.CLEU_KIND
+local MELEE = Const.MELEE_SPELL_ID
 
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
 local UnitExists = UnitExists
 
--- 我们只跟踪自己与自己的宠物。别的 GUID 直接丢，避免团本里累加全团数据
--- （那是 Details! 的活，也会拖垮性能）。这两个 GUID 在 Init/UNIT_PET 时刷新。
+-- 我们只跟踪自己与自己的召唤物（宠物/图腾/守护/镜像等）。别的 GUID 直接丢，
+-- 避免累加全团数据（那是 Details! 的活，也会拖垮性能）。
+-- ownedGUIDs 是"归属于我"的 GUID 集合：自己 + 当前宠物 + 运行时通过
+-- SPELL_SUMMON 发现的召唤物。这样多召唤物职业的伤害不再漏。
 local selfGUID = nil
-local petGUID = nil
+local ownedGUIDs = {}
 
 local function refreshGUIDs()
   selfGUID = UnitGUID and UnitGUID("player") or nil
+  wipe(ownedGUIDs)
+  if selfGUID then ownedGUIDs[selfGUID] = true end
   if UnitExists and UnitExists("pet") then
-    petGUID = UnitGUID("pet")
-  else
-    petGUID = nil
+    local pg = UnitGUID("pet")
+    if pg then ownedGUIDs[pg] = true end
   end
 end
 
--- 判断某 GUID 是否属于"我方"（自己或宠物）。
+-- 判断某 GUID 是否属于"我方"。selfGUID 尚未就绪时惰性补取一次，
+-- 防止登录早期 GUID 为 nil 导致整场伤害被判成"不是我打的"而丢弃。
 local function isMine(guid)
-  return guid and (guid == selfGUID or guid == petGUID)
+  if not guid then return false end
+  if not selfGUID then refreshGUIDs() end
+  return ownedGUIDs[guid] == true
+end
+
+-- 调试计数器：用来定位"采集不到"到底断在哪一环。由 /cc debug 读取。
+local dbg = {
+  cleuTotal = 0,
+  cleuRecorded = 0,
+  mineSrc = 0,
+  dmgAdds = 0,
+  knownKind = 0,
+  lastSub = "",
+  lastSrc = "",
+}
+CombatLog.dbg = dbg
+
+function CombatLog:DebugText()
+  local owned = 0
+  for _ in pairs(ownedGUIDs) do owned = owned + 1 end
+  return {
+    "===== CombatCoach 诊断 =====",
+    "采集中: " .. (ns.Segment:IsRecording() and "是" or "否（打开窗口即开始）"),
+    "selfGUID: " .. tostring(selfGUID),
+    "归属GUID数: " .. owned,
+    "战斗段: " .. (ns.Segment.current and "进行中" or "无"),
+    string.format("CLEU 总数: %d | 采集: %d", dbg.cleuTotal, dbg.cleuRecorded),
+    string.format("命中类型: %d | 判定我方: %d | 记伤害: %d",
+      dbg.knownKind, dbg.mineSrc, dbg.dmgAdds),
+    "最近子事件: " .. tostring(dbg.lastSub),
+    "最近来源GUID: " .. tostring(dbg.lastSrc),
+  }
 end
 
 -- ---- CLEU 分派：热路径，务必精简 ----
--- payload 结构（CombatLogGetCurrentEventInfo）:
---   timestamp, subevent, hideCaster, sourceGUID, sourceName, sourceFlags,
---   sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...
--- 之后是子事件特定参数。
+-- 基础参数：timestamp, subevent, hideCaster, sourceGUID, sourceName, sourceFlags,
+--   sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, 之后是子事件参数。
+-- SPELL 前缀：12=spellId 13=spellName 14=school；_DAMAGE 后缀：15=amount。
+-- SWING 无前缀：12=amount。（已对照 Wowpedia/wowcoach.gg 12.0+ 规范核对）
 local function handleCLEU()
-  local seg = ns.Segment.current
-  if not seg then return end  -- 不在战斗段内，直接忽略（登录/城市里省开销）
+  dbg.cleuTotal = dbg.cleuTotal + 1
+  if not ns.Segment.recording then return end
+  dbg.cleuRecorded = dbg.cleuRecorded + 1
 
   local _, subevent, _, sourceGUID, _, _, _,
         destGUID, _, _, _,
         p12, p13, p14, p15, p16, p17, p18 = CombatLogGetCurrentEventInfo()
 
+  dbg.lastSub = subevent
+  dbg.lastSrc = sourceGUID
+
   local kind = CLEU_KIND[subevent]
   if not kind then return end
+  dbg.knownKind = dbg.knownKind + 1
 
   if kind == "damage" then
-    -- 我方造成的伤害。SWING 无 spellId，用固定桶 (1, "自动攻击")。
     if isMine(sourceGUID) then
+      dbg.mineSrc = dbg.mineSrc + 1
+      dbg.dmgAdds = dbg.dmgAdds + 1
       if subevent == "SWING_DAMAGE" then
-        -- SWING: p12=amount
-        ns.Segment:AddDamageDone(6603, "自动攻击", p12 or 0)
+        ns.Segment:AddDamageDone(MELEE, "自动攻击", p12 or 0)
       else
-        -- SPELL_*: p12=spellId, p13=spellName, p15=amount
         ns.Segment:AddDamageDone(p12 or 0, p13, p15 or 0)
       end
     end
-    -- 自己承受的伤害（用于坦克 DTPS / 可避免伤害）。
     if destGUID == selfGUID then
       if subevent == "SWING_DAMAGE" then
         ns.Segment:AddDamageTaken(p12 or 0)
@@ -66,28 +105,23 @@ local function handleCLEU()
     end
 
   elseif kind == "heal" then
-    -- SPELL_HEAL: p12=spellId, p13=name, p15=amount, p16=overheal, p17=absorbed
+    -- SPELL_HEAL: 12=spellId 13=name 15=amount 16=overheal 17=absorbed
     if isMine(sourceGUID) then
-      local amount = p15 or 0
-      local over = p16 or 0
-      ns.Segment:AddHeal(amount, over)
+      ns.Segment:AddHeal(p12 or 0, p13, p15 or 0, p16 or 0)
     end
 
   elseif kind == "absorb" then
-    -- SPELL_ABSORBED 参数排布随来源不同而变；用最后几位里合理的数字近似吸收量。
     if isMine(sourceGUID) then
       local absorbed = tonumber(p18) or tonumber(p17) or tonumber(p16) or 0
       ns.Segment:AddAbsorb(absorbed)
     end
 
   elseif kind == "cast" then
-    -- SPELL_CAST_SUCCESS: p12=spellId, p13=name
     if isMine(sourceGUID) then
       ns.Segment:AddCast(p12 or 0, p13)
     end
 
   elseif kind == "aura_on" then
-    -- 我方给自己上的 buff/debuff（覆盖率跟踪，主要针对维持类）。
     if isMine(sourceGUID) or destGUID == selfGUID then
       ns.Segment:AuraOn(p12 or 0, p13)
     end
@@ -95,6 +129,12 @@ local function handleCLEU()
   elseif kind == "aura_off" then
     if isMine(sourceGUID) or destGUID == selfGUID then
       ns.Segment:AuraOff(p12 or 0)
+    end
+
+  elseif kind == "summon" then
+    -- 我召唤出来的单位，纳入归属集合，其后续伤害才会算作我的。
+    if isMine(sourceGUID) and destGUID then
+      ownedGUIDs[destGUID] = true
     end
 
   elseif kind == "interrupt" then
@@ -108,63 +148,46 @@ local function handleCLEU()
   end
 end
 
--- ---- 生命周期事件：段的开始/结束由这里编排 ----
-local function onlyBoss()
-  return ns.Config and ns.Config:Get("profile.onlyBossFights")
-end
-
+-- ---- 战斗边界：仅在采集中时划分战斗段，且不再触发任何分析/弹窗 ----
 function CombatLog:OnEvent(event, ...)
-  if event == "COMBAT_LOG_EVENT_UNFILTERED" then
-    handleCLEU()
-
-  elseif event == "PLAYER_ENTERING_WORLD" or event == "UNIT_PET" then
+  if event == "PLAYER_ENTERING_WORLD" or event == "UNIT_PET" then
     refreshGUIDs()
 
   elseif event == "ENCOUNTER_START" then
     local encounterID, encounterName = ...
     refreshGUIDs()
-    ns.Segment:Start(Const.SEGMENT_SOURCE.ENCOUNTER, {
+    ns.Segment:StartCombat(Const.SEGMENT_SOURCE.ENCOUNTER, {
       encounterID = encounterID, name = encounterName,
     })
 
   elseif event == "ENCOUNTER_END" then
     local _, _, _, _, success = ...
-    local seg = ns.Segment:Finish(success == 1)
-    ns.Core:SafeCall(function() CombatLog:Complete(seg) end)
-
-  elseif event == "PLAYER_REGEN_DISABLED" then
-    -- 进入战斗。若无首领段（普通打怪），开一个 combat 段。
-    if not onlyBoss() and not ns.Segment:IsActive() then
-      refreshGUIDs()
-      ns.Segment:Start(Const.SEGMENT_SOURCE.COMBAT)
+    if ns.Segment:Get() then
+      ns.Segment:FinishCurrent(success == 1)
+      if ns.MeterFrame then ns.MeterFrame:OnSegmentEnd() end
     end
 
+  elseif event == "PLAYER_REGEN_DISABLED" then
+    refreshGUIDs()
+    ns.Segment:StartCombat(Const.SEGMENT_SOURCE.COMBAT)
+
   elseif event == "PLAYER_REGEN_ENABLED" then
-    -- 脱战。只收尾 combat 段；encounter 段交给 ENCOUNTER_END，避免提前截断。
-    local seg = ns.Segment:Get()
-    if seg and seg.source == Const.SEGMENT_SOURCE.COMBAT then
-      seg = ns.Segment:Finish()
-      ns.Core:SafeCall(function() CombatLog:Complete(seg) end)
+    if ns.Segment:Get() then
+      ns.Segment:FinishCurrent()
+      if ns.MeterFrame then ns.MeterFrame:OnSegmentEnd() end
     end
   end
 end
 
--- 段结束后的编排：交给 Metrics 聚合 -> Analyzer 分析 -> Store 归档 -> UI。
--- 太短的段直接丢弃。
-function CombatLog:Complete(seg)
-  if not seg then return end
-  local minSec = tonumber(ns.Config:Get("profile.minSegmentSeconds"))
-    or Const.MIN_SEGMENT_SECONDS
-  local duration = (seg.endClock or 0) - (seg.startClock or 0)
-  if duration < minSec then return end
-
-  local report = ns.Metrics:Build(seg, duration)
-  if not report then return end
-  report.suggestions = ns.Analyzer:Analyze(report)
-  ns.Store:Add(report)
-
-  if ns.Config:Get("profile.autoShowReport") and ns.ReportFrame then
-    ns.ReportFrame:ShowReport(report)
+-- ---- 采集开关：由计量窗口驱动。窗口开=注册 CLEU 并开始采集，关=注销停采 ----
+function CombatLog:SetRecording(on)
+  if on then
+    refreshGUIDs()
+    ns.Segment:StartRecording()
+    self.frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+  else
+    ns.Segment:StopRecording()
+    self.frame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
   end
 end
 
@@ -172,16 +195,14 @@ function CombatLog:Init()
   refreshGUIDs()
   self.frame = CreateFrame("Frame")
   self.frame:SetScript("OnEvent", function(_, event, ...)
-    -- CLEU 极高频，直接调用不再包 pcall（异常会被外层战斗结束的 SafeCall 兜底）。
     if event == "COMBAT_LOG_EVENT_UNFILTERED" then
       handleCLEU()
     else
-      -- 生命周期事件参数不多（ENCOUNTER_END 最多 5 个），捕获后再进 SafeCall。
       local a1, a2, a3, a4, a5 = ...
       ns.Core:SafeCall(function() CombatLog:OnEvent(event, a1, a2, a3, a4, a5) end)
     end
   end)
-  self.frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+  -- 边界/生命周期事件常驻注册（开销极小）；CLEU 只在采集时注册。
   for _, ev in ipairs(Const.LIFECYCLE_EVENTS) do
     pcall(function() self.frame:RegisterEvent(ev) end)
   end

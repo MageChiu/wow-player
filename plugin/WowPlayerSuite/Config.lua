@@ -5,14 +5,17 @@ ns.Config = ns.Core:RegisterModule("Config", Config)
 
 local Utils = ns.Utils
 
+-- SavedVariables 在 ADDON_LOADED 后才保证就绪，Core:Init 正是此时运行，
+-- 故在此读取全局是安全的。
 function Config:Init()
-  if type(CombatCoachDB) ~= "table" then
-    CombatCoachDB = {}
+  if type(WowPlayerSuiteDB) ~= "table" then
+    WowPlayerSuiteDB = {}
   end
-  self.db = CombatCoachDB
+  self.db = WowPlayerSuiteDB
   Utils.DeepMergeDefaults(self.db, ns.Defaults)
 end
 
+-- 解析 "profile.showMinimapButton" 这样的点路径为 (parentTable, key)。
 local function resolve(db, path, createMissing)
   local node = db
   local lastKey
@@ -45,11 +48,6 @@ function Config:Set(path, value)
   parent[key] = value
 end
 
-function Config:GetProfile()
-  return self.db and self.db.profile
-end
-
--- 还原用户设置。采集数据在内存分段里，与此无关。
 function Config:ResetProfile()
   if not self.db then return end
   self.db.profile = Utils.DeepCopy(ns.Defaults.profile)

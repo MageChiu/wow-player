@@ -103,3 +103,35 @@ function U.DeepMergeDefaults(dst, defaults)
   end
   return dst
 end
+
+-- 枚举"当前货币列表"里的货币（即货币面板里能看到的、当前赛季相关的货币）。
+-- 这是本插件里货币显示的唯一依据：config 面板只从这里勾选，采集也只认这里
+-- 存在的 ID——非当前赛季/已下架的货币不在此列，即使存档残留也不会显示。
+--
+-- 返回 (list, idSet)：
+--   list  = { { id, name, quantity }, ... }（按面板顺序）
+--   idSet = { [id] = true }（供 O(1) 判定某 ID 是否属于当前货币列表）
+function U.EnumerateOwnedCurrencies()
+  local list, idSet = {}, {}
+  local CI = C_CurrencyInfo
+  if not CI or not CI.GetCurrencyListSize then return list, idSet end
+  local size = CI.GetCurrencyListSize() or 0
+  for i = 1, size do
+    local ok, info = pcall(CI.GetCurrencyListInfo, i)
+    if ok and type(info) == "table" and not info.isHeader
+        and info.name and info.name ~= "" then
+      local id = info.currencyID
+      if not id and CI.GetCurrencyListLink then
+        local okLink, link = pcall(CI.GetCurrencyListLink, i)
+        if okLink and type(link) == "string" then
+          id = tonumber(link:match("currency:(%d+)"))
+        end
+      end
+      if id and not idSet[id] then
+        idSet[id] = true
+        list[#list + 1] = { id = id, name = info.name, quantity = info.quantity or 0 }
+      end
+    end
+  end
+  return list, idSet
+end

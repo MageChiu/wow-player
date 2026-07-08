@@ -6,13 +6,13 @@ ns.Metrics = ns.Core:RegisterModule("Metrics", Metrics)
 local Utils = ns.Utils
 local Div = Utils.Div
 
--- 从一个已收尾的段构建报告对象。duration 已由调用方算好（单调时钟差）。
+-- 从一个段构建分析用报告对象。duration 由调用方算好（可为活体段的当前时长）。
 -- 返回 report，或 nil（数据不足）。
+-- 注意：本版已去除白名单（majorCDs/maintain/mitigation），分析只基于可观测数据。
 function Metrics:Build(seg, duration)
   if not seg or duration <= 0 then return nil end
 
-  local profile, specID = ns.SpecProfiles.ForCurrent()
-  local role = profile and profile.role or self:GuessRole()
+  local role = self:CurrentRole()
   local className = self:ClassName()
 
   local m = {}
@@ -20,7 +20,6 @@ function Metrics:Build(seg, duration)
   m.hps = Div(seg.healDone, duration)
   m.dtps = Div(seg.damageTaken, duration)
 
-  -- 过量治疗比例：over / (有效 + over)。无治疗时为 0。
   local totalHealRaw = seg.healDone + seg.overheal
   m.overhealPct = Div(seg.overheal, totalHealRaw)
 
@@ -28,56 +27,22 @@ function Metrics:Build(seg, duration)
   m.interrupts = seg.interrupts or 0
   m.dispels = seg.dispels or 0
 
-  -- 活跃时间估算：施法/行为跨度里，是否几乎一直在动。
-  -- 用首末行为时钟界定"实际投入"窗口，再与整段时长比。
-  -- 这是近似——日志拿不到 GCD 精确空档，但足够抓"站桩空转"这类大问题。
-  local span = 0
-  if seg.firstActionClock and seg.lastActionClock then
-    span = seg.lastActionClock - seg.firstActionClock
-  end
-  m.activeTimePct = Div(span, duration)
-  m.activeSpan = span
-
-  -- 光环覆盖率：total / duration，截断到 [0,1]。
+  -- 光环覆盖率：total / duration，截断到 [0,1]，并带上"施放次数"用于运行时
+  -- 推断哪些是"你在主动维持"的光环（供 Analyzer 用，不依赖白名单）。
   m.uptime = {}
   for spellId, a in pairs(seg.auras) do
-    local ratio = Div(a.total or 0, duration)
+    local total = a.total or 0
+    -- 若段仍在进行、光环当前处于激活状态，把"至今"的这段也补上，避免活体段低估。
+    if a.up and a.onClock then
+      total = total + (ns.Segment:LiveDuration(seg) + (seg.startClock or 0) - a.onClock)
+    end
+    local ratio = Div(total, duration)
     if ratio > 1 then ratio = 1 end
-    m.uptime[spellId] = { ratio = ratio, name = a.name }
+    m.uptime[spellId] = { ratio = ratio, name = a.name, applies = a.applies or 0 }
   end
 
-  -- 主动减伤总覆盖率（坦克）：把 profile.mitigation 列出的光环覆盖率取并集近似。
-  -- 简化处理：取其中最高的一个作为"减伤在线"比例（多数坦克核心减伤是单一主 buff）。
-  m.mitigationPct = 0
-  if profile and profile.mitigation then
-    local best = 0
-    for spellId in pairs(profile.mitigation) do
-      local u = m.uptime[spellId]
-      if u and u.ratio > best then best = u.ratio end
-    end
-    m.mitigationPct = best
-  end
-
-  -- 主 CD 使用次数：从施法记录里挑出 profile.majorCDs。
-  m.cdUsage = {}
-  if profile and profile.majorCDs then
-    for spellId, name in pairs(profile.majorCDs) do
-      local cast = seg.casts[spellId]
-      m.cdUsage[spellId] = { count = cast and cast.count or 0, name = name }
-    end
-  end
-
-  -- 维持类 debuff/buff 覆盖率：从 profile.maintain 取。
-  m.maintain = {}
-  if profile and profile.maintain then
-    for spellId, name in pairs(profile.maintain) do
-      local u = m.uptime[spellId]
-      m.maintain[spellId] = { ratio = u and u.ratio or 0, name = name }
-    end
-  end
-
-  -- Top 伤害技能（用于报告里展示占比，帮助判断循环重心）。
   m.topDamage = self:TopSpells(seg.dmgBySpell, seg.damageDone, 5)
+  m.topHeal = self:TopSpells(seg.healBySpell, seg.healDone, 5)
 
   return {
     startedAt = seg.startedAt,
@@ -86,17 +51,16 @@ function Metrics:Build(seg, duration)
     bossName = seg.bossName,
     kill = seg.kill,
     role = role,
-    specID = specID,
     className = className,
-    hasProfile = profile ~= nil,
+    zeroCollected = seg.zeroCollected,
     metrics = m,
   }
 end
 
--- 按伤害量降序取前 N 个技能，附带占总量比例。
-function Metrics:TopSpells(dmgBySpell, total, n)
+-- 按数值降序取前 N 个技能，附带占总量比例。
+function Metrics:TopSpells(bySpell, total, n)
   local list = {}
-  for spellId, b in pairs(dmgBySpell) do
+  for spellId, b in pairs(bySpell or {}) do
     list[#list + 1] = { spellId = spellId, name = b.name, amount = b.amount }
   end
   table.sort(list, function(a, b) return a.amount > b.amount end)
@@ -109,8 +73,8 @@ function Metrics:TopSpells(dmgBySpell, total, n)
   return out
 end
 
--- 无 profile 时的角色兜底判断，用官方 API。
-function Metrics:GuessRole()
+-- 当前角色定位，用官方 API（TANK/HEALER/DAMAGER）。
+function Metrics:CurrentRole()
   if GetSpecialization and GetSpecializationRole then
     local idx = GetSpecialization()
     if idx then

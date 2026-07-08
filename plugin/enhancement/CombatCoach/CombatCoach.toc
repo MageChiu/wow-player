@@ -1,21 +1,20 @@
 ## Interface: 120007, 120005, 120000
 ## Title: CombatCoach
-## Notes: 战斗结束后复盘你的输出/治疗/减伤，给出少而准的可执行改进点（T/DPS/治疗）。
+## Notes: 常驻实时技能采集/占比计量器；战斗后可按需分析输出/治疗/覆盖（T/DPS/治疗）。
 ## Author: wow-player
-## Version: 0.1.0
+## Version: 0.2.0
 ## SavedVariables: CombatCoachDB
 
 Constants.lua
 Utils.lua
 Core.lua
 Data\Defaults.lua
-Data\SpecProfiles.lua
 Config.lua
 Segment.lua
 CombatLog.lua
 Metrics.lua
 Analyzer.lua
-Store.lua
 Commands.lua
+UI\MeterFrame.lua
 UI\ReportFrame.lua
 Init.lua

@@ -44,22 +44,32 @@ local function collectWarbandMoney()
   end
 end
 
--- 追踪货币（代币 / roll 币）。只采集用户配置的 ID，找不到的跳过。
+-- 追踪货币（代币 / roll 币）。显示的唯一依据是"当前货币列表 ∩ 已勾选"：
+-- 只有既被用户勾选、又存在于当前货币列表里的货币才采集。非当前赛季/已下架
+-- 的货币（如旧的神勇石）即使存档里仍被追踪，也不在此显示——config 优先。
 local function collectCurrencies(rec)
   rec.currencies = rec.currencies or {}
   wipe(rec.currencies)
   if not C_CurrencyInfo or not C_CurrencyInfo.GetCurrencyInfo then return end
-  local list = ns.Config:Get("profile.trackedCurrencies") or {}
-  for _, id in ipairs(list) do
-    local info = safe(C_CurrencyInfo.GetCurrencyInfo, id)
-    if type(info) == "table" and info.name and info.name ~= "" then
-      rec.currencies[id] = {
-        name = info.name,
-        quantity = info.quantity or 0,
-        max = info.maxQuantity or 0,
-        earnedThisWeek = info.quantityEarnedThisWeek or 0,
-        icon = info.iconFileID,
-      }
+
+  -- 当前货币列表（面板可见范围）。列表为空（登录早期未就绪）时不清空既有
+  -- 数据、直接返回，避免把上次采到的货币误抹掉。
+  local ownedList, ownedSet = ns.Utils.EnumerateOwnedCurrencies()
+  if not ownedList or #ownedList == 0 then return end
+
+  local tracked = ns.Config:Get("profile.trackedCurrencies") or {}
+  for _, id in ipairs(tracked) do
+    if ownedSet[id] then
+      local info = safe(C_CurrencyInfo.GetCurrencyInfo, id)
+      if type(info) == "table" and info.name and info.name ~= "" then
+        rec.currencies[id] = {
+          name = info.name,
+          quantity = info.quantity or 0,
+          max = info.maxQuantity or 0,
+          earnedThisWeek = info.quantityEarnedThisWeek or 0,
+          icon = info.iconFileID,
+        }
+      end
     end
   end
 end
