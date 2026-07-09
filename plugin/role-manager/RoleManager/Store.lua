@@ -129,14 +129,15 @@ function Store:VaultText(rec)
   return string.format("%d/%d", unlocked, total)
 end
 
--- 周任务完成情况文本，如 "2/3"。
+-- 周任务完成情况文本，如 "2/3"。完成状态取自 rec.weeklyQuestDone。
 function Store:WeeklyQuestText(rec)
   local quests = ns.Config:Get("profile.weeklyQuests") or {}
-  local total, done = 0, 0
+  local done = rec.weeklyQuestDone or {}
+  local total, finished = 0, 0
   for questID in pairs(quests) do
     total = total + 1
-    if rec.weeklyQuests and rec.weeklyQuests[questID] then done = done + 1 end
+    if done[questID] then finished = finished + 1 end
   end
   if total == 0 then return "—" end
-  return string.format("%d/%d", done, total)
+  return string.format("%d/%d", finished, total)
 end

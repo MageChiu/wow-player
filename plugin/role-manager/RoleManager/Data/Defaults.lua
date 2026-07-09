@@ -53,6 +53,6 @@ ns.Defaults = {
 --     [type] = { { threshold, progress, level }, ... }
 --   },
 --   mplus = { weeklyRuns = { {mapID, level, name}, ... }, best = <level> },
---   weeklyQuests = { [questID] = true/false },
+--   weeklyQuestDone = { [questID] = true/false },  -- 本角色各周任务完成状态
 --   updatedAt = <epoch>,
 -- }

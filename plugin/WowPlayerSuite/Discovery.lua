@@ -28,22 +28,59 @@ local function metadata(addon, field)
   return nil
 end
 
+-- 启停相关的 C_AddOns 兼容封装（12.0 用 C_AddOns.*，旧版为全局同名函数）。
+-- 注意：GetAddOnEnableState 在移入 C_AddOns 时参数顺序被调换为 (addon[, character])，
+-- 旧全局是 (character, addon)，故分别处理。返回 0=禁用 / 1=部分 / 2=启用。
+local function enableState(addon)
+  if C_AddOns and C_AddOns.GetAddOnEnableState then
+    return C_AddOns.GetAddOnEnableState(addon, nil) or 0
+  end
+  if GetAddOnEnableState then
+    return GetAddOnEnableState(nil, addon) or 0
+  end
+  return 2  -- 无法查询时保守视为启用。
+end
+
+-- 是否已安装（存在于插件列表）。用 GetAddOnInfo 的 reason=="MISSING" 判断。
+local function isInstalled(addon)
+  local getInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
+  if not getInfo then return true end
+  local ok, _, _, _, _, _, reason = pcall(getInfo, addon)
+  if not ok then return false end
+  return reason ~= "MISSING"
+end
+
+local function setAddonEnabled(addon, enable)
+  local c = C_AddOns or {}
+  if enable then
+    local fn = c.EnableAddOn or EnableAddOn
+    if fn then fn(addon) end
+  else
+    local fn = c.DisableAddOn or DisableAddOn
+    if fn then fn(addon) end
+  end
+end
+
 -- 内置适配表：Hub 认识的插件的接入知识。这是"运行时管理"的单一清单。
 --   addon:    插件文件夹名（= .toc 名，用于 C_AddOns 查询与加载检测）
 --   slash:    该插件在 SlashCmdList 里的键名（大写），用于驱动其命令
---   settings: 传给命令的参数，用来打开其设置面板（如 "config"）
---   bundled:  是否为官方整包成员（true=随整合包一起发布；false/nil=仅
---             管理的第三方/社区插件，用户自行单独安装）。
---             整包成员须与 package-suite.sh 的 PLUGINS 列表保持一致，
---             详见 plugin/插件接入与打包规范.md。
+--   openArg:  "主操作"传给命令的参数。有设置面板的插件用 "config"（按钮显示
+--             "打开设置"）；无设置面板、空命令即开主窗口的插件用 ""（按钮
+--             显示"打开"，如 CombatCoach 开计量窗口、Sudoku 开游戏窗口）。
+--   category: 分类。必须等于该插件所在的 plugin/ 一级目录名（见 Constants.CATEGORY，
+--             打包脚本会交叉校验）。
+--   displaySlash: 概览页展示的命令。
+--   bundled:  是否为官方整包成员（true=随整合包一起发布；false/nil=仅管理的
+--             第三方/社区插件）。整包成员须与 package-suite.sh 的 PLUGINS 一致。
 --
 -- 新增社区插件：在此加一行、bundled 省略或置 false，不改那个插件本身。
 -- 新增整包成员：在此加一行 bundled=true，并同步 package-suite.sh。
 local KNOWN = {
-  { addon = "MyChat",          slash = "MYCHAT",          settings = "config", displaySlash = "/mychat", bundled = true },
-  { addon = "RoleManager",     slash = "ROLEMANAGER",     settings = "config", displaySlash = "/rm",     bundled = true },
-  { addon = "CombatCoach",     slash = "COMBATCOACH",     settings = "config", displaySlash = "/cc",     bundled = true },
-  { addon = "QuickDisenchant", slash = "QUICKDISENCHANT", settings = "config", displaySlash = "/qde",    bundled = true },
+  { addon = "MyChat",          slash = "MYCHAT",          openArg = "config", category = "chat",         displaySlash = "/mychat", bundled = true },
+  { addon = "RoleManager",     slash = "ROLEMANAGER",     openArg = "config", category = "role-manager", displaySlash = "/rm",     bundled = true },
+  { addon = "CombatCoach",     slash = "COMBATCOACH",     openArg = "",       category = "enhancement",  displaySlash = "/cc",     bundled = true },
+  { addon = "QuickDisenchant", slash = "QUICKDISENCHANT", openArg = "config", category = "trade",        displaySlash = "/qde",    bundled = true },
+  { addon = "Sudoku",          slash = "SUDOKU",          openArg = "",       category = "mini-game",    displaySlash = "/sudoku", bundled = true },
 }
 
 -- 供 UI 订阅"发现结果变化"的回调（后加载的插件会触发刷新）。
@@ -87,12 +124,15 @@ function Discovery:GetOrdered()
         addon = def.addon,
         version = metadata(def.addon, "Version"),
         slashCmd = def.displaySlash,
+        category = def.category,
         bundled = def.bundled and true or false,
+        -- openArg 为空串表示"主操作是开主窗口"，非设置面板 → 按钮显示"打开"。
+        openLabel = (def.openArg ~= nil and def.openArg ~= "") and "打开设置" or "打开",
         source = "discovered",
       }
-      -- 有对应命令入口才提供"打开设置"。
+      -- 有对应命令入口才提供"主操作"（打开设置或打开主窗口）。
       if SlashCmdList and type(SlashCmdList[def.slash]) == "function" then
-        entry.openSettings = makeOpenSettings(def.slash, def.settings)
+        entry.openSettings = makeOpenSettings(def.slash, def.openArg)
       end
       byTitle[title] = entry
       order[#order + 1] = title
@@ -111,7 +151,10 @@ function Discovery:GetOrdered()
     end
     entry.version = desc.version or entry.version
     entry.slashCmd = desc.slashCmd or entry.slashCmd
-    if type(desc.openSettings) == "function" then entry.openSettings = desc.openSettings end
+    if type(desc.openSettings) == "function" then
+      entry.openSettings = desc.openSettings
+      entry.openLabel = entry.openLabel or "打开设置"
+    end
     if type(desc.setMinimapShown) == "function" then entry.setMinimapShown = desc.setMinimapShown end
     if type(desc.getMinimapShown) == "function" then entry.getMinimapShown = desc.getMinimapShown end
   end
@@ -136,6 +179,29 @@ function Discovery:GetOrdered()
     return tostring(a.title) < tostring(b.title)
   end)
   return list
+end
+
+-- 启停管理：列出所有 KNOWN 插件（不限已加载），带三态。供"插件管理"页用。
+-- 每项：{ addon, title, category, installed(bool), state(0/1/2), isSelf(false) }
+function Discovery:GetManageable()
+  local list = {}
+  for _, def in ipairs(KNOWN) do
+    local installed = isInstalled(def.addon)
+    list[#list + 1] = {
+      addon = def.addon,
+      -- 未安装时读不到 toc 标题，退回用 addon 名。
+      title = (installed and metadata(def.addon, "Title")) or def.addon,
+      category = def.category,
+      installed = installed,
+      state = installed and enableState(def.addon) or 0,
+    }
+  end
+  return list
+end
+
+-- 启用/禁用某插件（次会话生效，需 reload）。Hub 自身不在 KNOWN 里，天然不可通过此禁用。
+function Discovery:SetEnabled(addon, enable)
+  ns.Core:SafeCall(function() setAddonEnabled(addon, enable) end)
 end
 
 -- 自愿注册：安装全局 API，供插件（含社区插件）可选地上报更丰富能力。
