@@ -138,15 +138,17 @@ local function collectMythicPlus(rec)
   rec.mplus.rating = safe(C_ChallengeMode and C_ChallengeMode.GetOverallDungeonScore) or 0
 end
 
--- 可配置周任务的完成状态。
+-- 可配置周任务的完成状态。配置 profile.weeklyQuests 是 {[questID]=显示名}，
+-- 这里只读取它的 key（任务 ID），把完成状态写到独立字段 rec.weeklyQuestDone，
+-- 不覆写配置本身。
 local function collectWeeklyQuests(rec)
-  rec.weeklyQuests = rec.weeklyQuests or {}
-  wipe(rec.weeklyQuests)
+  rec.weeklyQuestDone = rec.weeklyQuestDone or {}
+  wipe(rec.weeklyQuestDone)
   local quests = ns.Config:Get("profile.weeklyQuests") or {}
   if not C_QuestLog or not C_QuestLog.IsQuestFlaggedCompleted then return end
   for questID in pairs(quests) do
     local done = safe(C_QuestLog.IsQuestFlaggedCompleted, tonumber(questID))
-    rec.weeklyQuests[questID] = done and true or false
+    rec.weeklyQuestDone[questID] = done and true or false
   end
 end
 

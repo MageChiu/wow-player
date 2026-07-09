@@ -23,7 +23,9 @@ local function help()
   Utils.Print("  /rm addcur <ID>    手动添加追踪货币")
   Utils.Print("  /rm delcur <ID>    移除追踪货币")
   Utils.Print("  /rm curlist        列出当前追踪的货币")
-  Utils.Print("  /rm addquest <ID>  添加每周任务追踪")
+  Utils.Print("  /rm addquest <ID> [名称]  添加每周任务追踪")
+  Utils.Print("  /rm delquest <ID>  移除每周任务")
+  Utils.Print("  /rm questlist      列出追踪的每周任务")
   Utils.Print("  /rm reset          还原设置（保留角色缓存）")
   Utils.Print("  /rm wipe           清空所有角色缓存")
 end
@@ -117,14 +119,43 @@ local function listCurrencies()
   end
 end
 
-local function addQuest(idStr)
+-- 参数形如 "82946" 或 "82946 周常世界任务"。名称留空则由 Config 自动取。
+local function addQuest(rest)
+  rest = Utils.Trim(rest or "")
+  local idStr, name = rest:match("^(%S+)%s*(.*)$")
   local id = tonumber(idStr)
-  if not id then Utils.Print("请提供任务 ID，如 /rm addquest 82946"); return end
-  local quests = ns.Config:Get("profile.weeklyQuests") or {}
-  quests[id] = true
-  ns.Config:Set("profile.weeklyQuests", quests)
+  if not id then Utils.Print("请提供任务 ID，如 /rm addquest 82946 [名称]"); return end
+  ns.Config:AddWeeklyQuest(id, name)
   ns.Core:SafeCall(function() ns.Collector:CollectSelf() end)
-  Utils.Print("已追踪每周任务 " .. id .. "。")
+  if ns.SettingsPanel and ns.SettingsPanel.frame and ns.SettingsPanel.frame:IsShown() then
+    ns.SettingsPanel:_refreshWeeklyQuests()
+  end
+  local quests = ns.Config:Get("profile.weeklyQuests") or {}
+  Utils.Print(string.format("已追踪周任务 %d（%s）。", id, quests[id] or "?"))
+end
+
+local function delQuest(idStr)
+  local id = tonumber(idStr)
+  if not id then Utils.Print("请提供任务 ID。"); return end
+  local quests = ns.Config:Get("profile.weeklyQuests") or {}
+  if quests[id] == nil then Utils.Print("追踪列表里没有周任务 " .. id .. "。"); return end
+  ns.Config:RemoveWeeklyQuest(id)
+  if ns.SettingsPanel and ns.SettingsPanel.frame and ns.SettingsPanel.frame:IsShown() then
+    ns.SettingsPanel:_refreshWeeklyQuests()
+  end
+  Utils.Print("已移除周任务 " .. id .. "。")
+end
+
+local function listQuests()
+  local quests = ns.Config:Get("profile.weeklyQuests") or {}
+  local ids = {}
+  for id in pairs(quests) do ids[#ids + 1] = id end
+  if #ids == 0 then Utils.Print("当前未追踪任何周任务。用 /rm addquest <ID> 添加。"); return end
+  table.sort(ids)
+  Utils.Print("追踪的周任务:")
+  for _, id in ipairs(ids) do
+    Utils.Print(string.format("  %d - %s", id, quests[id] or "?"))
+  end
 end
 
 function Commands:Dispatch(msg)
@@ -154,6 +185,10 @@ function Commands:Dispatch(msg)
     listCurrencies()
   elseif cmd == "addquest" then
     addQuest(rest)
+  elseif cmd == "delquest" then
+    delQuest(rest)
+  elseif cmd == "questlist" then
+    listQuests()
   elseif cmd == "reset" then
     ns.Config:ResetProfile()
     Utils.Print("已还原设置，请 /reload 使全部生效。")

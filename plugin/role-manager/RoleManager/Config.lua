@@ -116,6 +116,31 @@ function Config:SetCharHidden(key, hidden)
   self:Set("profile.hiddenChars", map)
 end
 
+-- 周任务：存于 profile.weeklyQuests = { [questID]=显示名 }。
+function Config:AddWeeklyQuest(id, name)
+  id = tonumber(id)
+  if not id then return end
+  local quests = self:Get("profile.weeklyQuests") or {}
+  if not name or name == "" then
+    -- 名称留空时优先取游戏内任务名，取不到回退 "任务 <ID>"。
+    if C_QuestLog and C_QuestLog.GetTitleForQuestID then
+      local ok, title = pcall(C_QuestLog.GetTitleForQuestID, id)
+      if ok and type(title) == "string" and title ~= "" then name = title end
+    end
+    if not name or name == "" then name = "任务 " .. id end
+  end
+  quests[id] = name
+  self:Set("profile.weeklyQuests", quests)
+end
+
+function Config:RemoveWeeklyQuest(id)
+  id = tonumber(id)
+  if not id then return end
+  local quests = self:Get("profile.weeklyQuests") or {}
+  quests[id] = nil
+  self:Set("profile.weeklyQuests", quests)
+end
+
 -- 还原用户设置；角色快照与账号数据保留。
 function Config:ResetProfile()
   if not self.db then return end

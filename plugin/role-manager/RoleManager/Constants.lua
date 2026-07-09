@@ -5,7 +5,7 @@ ns.Constants = C
 
 C.ADDON_TITLE = "RoleManager"
 C.SLUG = "RoleManager"
-C.VERSION = "0.1.3"
+C.VERSION = "0.2.0"
 
 -- Enum.WeeklyRewardChestThresholdType（宝库活动分类）。
 -- MythicPlus=1、RankedPvP=2、Raid=3 为官方长期稳定值（见 wiki）。

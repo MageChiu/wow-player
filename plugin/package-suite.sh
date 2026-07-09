@@ -37,6 +37,7 @@ PLUGINS=(
   "RoleManager|role-manager/RoleManager"
   "CombatCoach|enhancement/CombatCoach"
   "QuickDisenchant|trade/quick-disenchant/QuickDisenchant"
+  "Sudoku|mini-game/Sudoku"
 )
 
 CHECK_ONLY=0
@@ -115,6 +116,29 @@ if [[ -f "$DISCOVERY_FILE" ]]; then
 
   [[ "$MISMATCH" -eq 0 ]] || fail "整包成员与 Discovery.KNOWN 不一致（$MISMATCH 处），请同步后重试。"
   green "整包成员与 Discovery.KNOWN(bundled=true) 一致校验通过"
+
+  # --- 目录即分类：校验每个成员的 category 与其源目录一级目录名一致 --------
+  # 约定 plugin/ 下一级目录 = 一个分类；Discovery.KNOWN 每条 category 必须等于
+  # 该插件所在的一级目录名。写错分类名会导致概览页分组错乱，故在此拦截。
+  CAT_MISMATCH=0
+  for e in "${PLUGINS[@]}"; do
+    name="${e%%|*}"
+    rel="${e##*|}"
+    [[ "$name" == "WowPlayerSuite" ]] && continue   # Hub 无分类
+    topdir="${rel%%/*}"                              # 源目录的一级目录名
+    # 从 Discovery.lua 取该 addon 所在行的 category = "值"。
+    line="$(grep -E "addon\s*=\s*\"${name}\"" "$DISCOVERY_FILE" | head -n1 || true)"
+    cat="$(printf '%s' "$line" | grep -oE 'category\s*=\s*"[^"]+"' | sed -E 's/.*"([^"]+)".*/\1/' || true)"
+    if [[ -z "$cat" ]]; then
+      red "  分类缺失: $name 在 Discovery.KNOWN 未声明 category"
+      CAT_MISMATCH=$((CAT_MISMATCH + 1))
+    elif [[ "$cat" != "$topdir" ]]; then
+      red "  分类不符: $name 源目录一级=「$topdir」，但 KNOWN category=「$cat」（约定二者相等）"
+      CAT_MISMATCH=$((CAT_MISMATCH + 1))
+    fi
+  done
+  [[ "$CAT_MISMATCH" -eq 0 ]] || fail "分类与源目录不一致（$CAT_MISMATCH 处），请对齐后重试。"
+  green "分类与源目录一致校验通过（目录即分类）"
 else
   yellow "  警告: 未找到 $DISCOVERY_FILE，跳过整包成员一致性校验"
 fi
